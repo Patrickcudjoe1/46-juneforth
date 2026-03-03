@@ -5,7 +5,7 @@ import { MinimalistHero } from "@/components/ui/minimalist-hero";
 const MinimalistHeroDemo = () => {
   const navLinks = [
     { label: "HOME", href: "/" },
-    { label: "GALLERY", href: "/gallery" },
+    { label: "LOOKBOOK", href: "/lookbook" },
   ];
 
   const socialLinks = [
