@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import { Moon, ShoppingCart, Sun, User } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 
 interface MinimalistHeroProps {
   logoText: string;
@@ -223,12 +224,12 @@ export const MinimalistHero = ({
         </div>
       )}
 
-      <div className="relative grid w-full max-w-7xl flex-grow grid-cols-1 items-center md:grid-cols-12">
+      <div className="relative grid w-full max-w-7xl flex-grow grid-cols-1 items-center pb-12 md:pb-0 md:grid-cols-12 md:gap-4 lg:gap-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1 }}
-          className="z-20 order-2 text-center md:order-1 md:col-span-3 md:text-left"
+          className="z-20 order-3 mt-8 text-center md:order-1 md:col-span-3 md:mt-0 md:text-left"
         >
           <p className="mx-auto max-w-xs text-sm leading-relaxed text-foreground/80 md:mx-0">
             {mainText}
@@ -270,20 +271,34 @@ export const MinimalistHero = ({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.2 }}
-          className="z-20 order-3 flex items-center justify-center text-center md:col-span-5 md:justify-start md:text-left"
+          className="z-20 order-2 mt-8 flex flex-col items-center justify-center text-center md:order-3 md:col-span-5 md:mt-0 md:items-center md:text-center"
         >
           <h1 className="max-w-full text-[clamp(3rem,6.5vw,9rem)] font-extrabold leading-[0.85] tracking-tight text-foreground">
             {overlayText}
           </h1>
+          <div className="mt-8 hidden gap-4 justify-center md:flex">
+            <InteractiveHoverButton text="SHOP" />
+            <InteractiveHoverButton text="LOOK BOOK" />
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.4 }}
+          className="z-20 order-4 mt-12 flex w-full flex-col items-center gap-4 md:hidden"
+        >
+          <InteractiveHoverButton text="SHOP" />
+          <InteractiveHoverButton text="LOOK BOOK" />
         </motion.div>
       </div>
 
-      <footer className="z-30 flex w-full max-w-7xl items-center justify-between">
+      <footer className="z-30 mt-8 flex w-full max-w-7xl items-center justify-between md:mt-0 md:pb-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 1.2 }}
-          className="flex items-center space-x-4"
+          className="flex items-center space-x-4 md:hidden"
         >
           {socialLinks.map((link, index) => (
             <SocialIcon key={index} href={link.href} icon={link.icon} />
