@@ -24,7 +24,7 @@ const MinimalistHeroDemo = () => {
       imageAlt="A portrait of a person in a black turtleneck, in profile."
       overlayText="JUNEFORTH*"
       socialLinks={socialLinks}
-      locationText="Arlington Heights, IL"
+      locationText=""
     />
   );
 };
