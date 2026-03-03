@@ -28,7 +28,7 @@ const NavLink = ({
   onClick?: () => void;
 }) => {
   const className =
-    "rounded-full border border-foreground/30 px-4 py-1.5 text-sm font-medium tracking-widest text-foreground transition hover:bg-foreground hover:text-background";
+    "rounded-full border border-foreground/30 px-4 py-1.5 text-xs font-medium tracking-[0.18em] text-foreground transition hover:bg-foreground hover:text-background sm:text-sm md:tracking-widest";
 
   if (href.startsWith("http")) {
     return (
@@ -62,7 +62,7 @@ const SocialIcon = ({
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    className="text-foreground/60 transition-colors hover:text-foreground"
+    className="text-foreground/70 transition-colors hover:text-foreground"
   >
     <Icon className="h-5 w-5" />
   </a>
@@ -189,7 +189,7 @@ export const MinimalistHero = ({
             ))}
           </nav>
           <div className="mt-4 flex items-center justify-between">
-            <span className="text-xs uppercase tracking-[0.2em] text-foreground/60">
+            <span className="text-xs uppercase tracking-[0.2em] text-foreground/80">
               Cart
             </span>
             <Link
@@ -202,7 +202,7 @@ export const MinimalistHero = ({
             </Link>
           </div>
           <div className="mt-4 flex items-center justify-between">
-            <span className="text-xs uppercase tracking-[0.2em] text-foreground/60">
+            <span className="text-xs uppercase tracking-[0.2em] text-foreground/80">
               Account
             </span>
             <Link
@@ -215,7 +215,7 @@ export const MinimalistHero = ({
             </Link>
           </div>
           <div className="mt-4 flex items-center justify-between">
-            <span className="text-xs uppercase tracking-[0.2em] text-foreground/60">
+            <span className="text-xs uppercase tracking-[0.2em] text-foreground/80">
               Theme
             </span>
             <ThemeToggle />
