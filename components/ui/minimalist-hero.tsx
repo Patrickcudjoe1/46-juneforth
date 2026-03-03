@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
-import { Moon, Sun, User } from "lucide-react";
+import { Moon, ShoppingCart, Sun, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface MinimalistHeroProps {
@@ -146,6 +146,13 @@ export const MinimalistHero = ({
             ))}
           </nav>
           <Link
+            href="/cart"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-foreground/30 bg-background/80 text-foreground shadow-sm transition hover:bg-foreground hover:text-background"
+            aria-label="Cart"
+          >
+            <ShoppingCart className="h-4 w-4" />
+          </Link>
+          <Link
             href="/auth"
             className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-foreground/30 bg-background/80 text-foreground shadow-sm transition hover:bg-foreground hover:text-background"
             aria-label="Account"
@@ -181,6 +188,19 @@ export const MinimalistHero = ({
               </NavLink>
             ))}
           </nav>
+          <div className="mt-4 flex items-center justify-between">
+            <span className="text-xs uppercase tracking-[0.2em] text-foreground/60">
+              Cart
+            </span>
+            <Link
+              href="/cart"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-foreground/30 bg-background/80 text-foreground shadow-sm transition hover:bg-foreground hover:text-background"
+              aria-label="Cart"
+              onClick={() => setMobileOpen(false)}
+            >
+              <ShoppingCart className="h-4 w-4" />
+            </Link>
+          </div>
           <div className="mt-4 flex items-center justify-between">
             <span className="text-xs uppercase tracking-[0.2em] text-foreground/60">
               Account
