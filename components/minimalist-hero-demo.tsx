@@ -7,7 +7,6 @@ const MinimalistHeroDemo = () => {
     { label: "HOME", href: "/" },
     { label: "CATALOG", href: "#catalog" },
     { label: "GALLERY", href: "/gallery" },
-    { label: "AUTH", href: "/auth" },
   ];
 
   const socialLinks = [

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface MinimalistHeroProps {
@@ -145,6 +145,13 @@ export const MinimalistHero = ({
               </NavLink>
             ))}
           </nav>
+          <Link
+            href="/auth"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-foreground/30 bg-background/80 text-foreground shadow-sm transition hover:bg-foreground hover:text-background"
+            aria-label="Account"
+          >
+            <User className="h-4 w-4" />
+          </Link>
           <ThemeToggle />
         </div>
         <motion.button
@@ -162,7 +169,7 @@ export const MinimalistHero = ({
       </header>
 
       {mobileOpen && (
-        <div className="mt-4 w-full max-w-7xl rounded-2xl border border-foreground/10 bg-background/95 p-4 shadow-sm md:hidden">
+        <div className="relative z-30 mt-4 w-full max-w-7xl rounded-2xl border border-foreground/10 bg-background/95 p-4 shadow-sm md:hidden">
           <nav className="flex flex-col gap-3">
             {navLinks.map((link) => (
               <NavLink
@@ -174,6 +181,19 @@ export const MinimalistHero = ({
               </NavLink>
             ))}
           </nav>
+          <div className="mt-4 flex items-center justify-between">
+            <span className="text-xs uppercase tracking-[0.2em] text-foreground/60">
+              Account
+            </span>
+            <Link
+              href="/auth"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-foreground/30 bg-background/80 text-foreground shadow-sm transition hover:bg-foreground hover:text-background"
+              aria-label="Account"
+              onClick={() => setMobileOpen(false)}
+            >
+              <User className="h-4 w-4" />
+            </Link>
+          </div>
           <div className="mt-4 flex items-center justify-between">
             <span className="text-xs uppercase tracking-[0.2em] text-foreground/60">
               Theme
