@@ -10,8 +10,9 @@ import { TransparentHeader } from "@/components/transparent-header";
 interface MinimalistHeroProps {
   logoText: string;
   mainText: string;
-  imageSrc: string;
-  imageAlt: string;
+  imageSrc?: string;
+  videoSrc?: string;
+  imageAlt?: string;
   overlayText: string;
   locationText: string;
   className?: string;
@@ -23,6 +24,7 @@ export const MinimalistHero = ({
   logoText,
   mainText,
   imageSrc,
+  videoSrc,
   imageAlt,
   overlayText,
   locationText,

@@ -66,15 +66,22 @@ export function LookbookSection({ items = defaultItems }: LookbookSectionProps) 
                 forceLightMode={true}
             />
 
-            {/* Hero Image */}
-            <div className="relative h-screen w-full overflow-hidden">
-                <img
-                    src="/images/J4-10.jpg"
-                    alt="Brand Hero Banner"
+            {/* Hero Video */}
+            <div className="relative h-screen w-full overflow-hidden bg-black/5">
+                <video
+                    key="/VID-1.webm"
+                    src="/VID-1.webm"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    disablePictureInPicture
+                    preload="auto"
+                    suppressHydrationWarning
                     className="absolute inset-0 h-full w-full object-cover pt-[73px]"
                 />
-                <div className="absolute inset-0 bg-black/20 mt-[73px] flex items-center justify-center">
-                    <Link href="/shop" className="mt-16">
+                <div className="absolute inset-0 bg-black/20 mt-[73px] flex items-center justify-center pointer-events-none">
+                    <Link href="/shop" className="mt-16 pointer-events-auto">
                         <InteractiveHoverButton text="SHOP" />
                     </Link>
                 </div>
