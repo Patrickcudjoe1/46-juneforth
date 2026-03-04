@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
-import { Moon, ShoppingCart, Sun, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import { TransparentHeader } from "@/components/transparent-header";
 
 interface MinimalistHeroProps {
   logoText: string;
@@ -18,39 +18,6 @@ interface MinimalistHeroProps {
   locationText: string;
   className?: string;
 }
-
-const NavLink = ({
-  href,
-  children,
-  onClick,
-}: {
-  href: string;
-  children: React.ReactNode;
-  onClick?: () => void;
-}) => {
-  const className =
-    "rounded-full border border-foreground/30 px-4 py-1.5 text-xs font-medium tracking-[0.18em] text-foreground transition hover:bg-foreground hover:text-background sm:text-sm md:tracking-widest";
-
-  if (href.startsWith("http")) {
-    return (
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={className}
-        onClick={onClick}
-      >
-        {children}
-      </a>
-    );
-  }
-
-  return (
-    <Link href={href} className={className} onClick={onClick}>
-      {children}
-    </Link>
-  );
-};
 
 const SocialIcon = ({
   href,
@@ -68,46 +35,6 @@ const SocialIcon = ({
     <Icon className="h-5 w-5" />
   </a>
 );
-
-const ThemeToggle = () => {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const stored = window.localStorage.getItem("theme") as
-      | "light"
-      | "dark"
-      | null;
-    const prefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-    const initial = stored ?? (prefersDark ? "dark" : "light");
-    setTheme(initial);
-    document.documentElement.setAttribute("data-theme", initial);
-    document.documentElement.classList.toggle("dark", initial === "dark");
-  }, []);
-
-  const toggle = () => {
-    const next = theme === "light" ? "dark" : "light";
-    setTheme(next);
-    document.documentElement.setAttribute("data-theme", next);
-    document.documentElement.classList.toggle("dark", next === "dark");
-    window.localStorage.setItem("theme", next);
-  };
-
-  const Icon = theme === "light" ? Moon : Sun;
-
-  return (
-    <button
-      type="button"
-      onClick={toggle}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-foreground/20 bg-background/60 text-foreground shadow-sm transition hover:bg-foreground hover:text-background"
-      aria-label="Toggle theme"
-    >
-      <Icon className="h-4 w-4" />
-    </button>
-  );
-};
 
 export const MinimalistHero = ({
   logoText,
@@ -129,100 +56,7 @@ export const MinimalistHero = ({
         className
       )}
     >
-      <header className="z-30 flex w-full max-w-7xl items-center justify-between">
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-xl font-bold tracking-wider"
-        >
-          {logoText}
-        </motion.div>
-        <div className="hidden items-center gap-4 md:flex">
-          <nav className="flex items-center gap-3">
-            {navLinks.map((link) => (
-              <NavLink key={link.label} href={link.href}>
-                {link.label}
-              </NavLink>
-            ))}
-          </nav>
-          <Link
-            href="/cart"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-foreground/30 bg-background/80 text-foreground shadow-sm transition hover:bg-foreground hover:text-background"
-            aria-label="Cart"
-          >
-            <ShoppingCart className="h-4 w-4" />
-          </Link>
-          <Link
-            href="/auth"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-foreground/30 bg-background/80 text-foreground shadow-sm transition hover:bg-foreground hover:text-background"
-            aria-label="Account"
-          >
-            <User className="h-4 w-4" />
-          </Link>
-          <ThemeToggle />
-        </div>
-        <motion.button
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          className="flex flex-col space-y-1.5 md:hidden"
-          aria-label="Open menu"
-          onClick={() => setMobileOpen((open) => !open)}
-        >
-          <span className="block h-0.5 w-6 bg-foreground" />
-          <span className="block h-0.5 w-6 bg-foreground" />
-          <span className="block h-0.5 w-5 bg-foreground" />
-        </motion.button>
-      </header>
-
-      {mobileOpen && (
-        <div className="relative z-30 mt-4 w-full max-w-7xl rounded-2xl border border-foreground/10 bg-background/95 p-4 shadow-sm md:hidden">
-          <nav className="flex flex-col gap-3">
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.label}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-              >
-                {link.label}
-              </NavLink>
-            ))}
-          </nav>
-          <div className="mt-4 flex items-center justify-between">
-            <span className="text-xs uppercase tracking-[0.2em] text-foreground/80">
-              Cart
-            </span>
-            <Link
-              href="/cart"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-foreground/30 bg-background/80 text-foreground shadow-sm transition hover:bg-foreground hover:text-background"
-              aria-label="Cart"
-              onClick={() => setMobileOpen(false)}
-            >
-              <ShoppingCart className="h-4 w-4" />
-            </Link>
-          </div>
-          <div className="mt-4 flex items-center justify-between">
-            <span className="text-xs uppercase tracking-[0.2em] text-foreground/80">
-              Account
-            </span>
-            <Link
-              href="/auth"
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-foreground/30 bg-background/80 text-foreground shadow-sm transition hover:bg-foreground hover:text-background"
-              aria-label="Account"
-              onClick={() => setMobileOpen(false)}
-            >
-              <User className="h-4 w-4" />
-            </Link>
-          </div>
-          <div className="mt-4 flex items-center justify-between">
-            <span className="text-xs uppercase tracking-[0.2em] text-foreground/80">
-              Theme
-            </span>
-            <ThemeToggle />
-          </div>
-        </div>
-      )}
+      <TransparentHeader logoText={logoText} navLinks={navLinks} absolute={true} />
 
       <div className="relative grid w-full max-w-7xl flex-grow grid-cols-1 items-center pb-12 md:pb-0 md:grid-cols-12 md:gap-4 lg:gap-8">
         <motion.div

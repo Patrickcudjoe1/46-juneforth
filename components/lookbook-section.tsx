@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { SiteHeader } from "@/components/site-header";
+import { TransparentHeader } from "@/components/transparent-header";
 
 export interface LookbookItem {
     id: string;
@@ -18,37 +18,37 @@ const defaultItems: LookbookItem[] = [
     {
         id: "look-1",
         title: "LOOK 01",
-        image: "/images/look_1_new_1772586185397.png",
+        image: "/images/J4-1.png",
         href: "#",
     },
     {
         id: "look-2",
         title: "LOOK 02",
-        image: "/images/look_2_new_1772586200765.png",
+        image: "/images/J4-3.JPG",
         href: "#",
     },
     {
         id: "look-3",
         title: "LOOK 03",
-        image: "/images/look_3_new_1772586220448.png",
+        image: "/images/J4-7.JPG",
         href: "#",
     },
     {
         id: "look-4",
         title: "LOOK 04",
-        image: "/images/look_4_new_1772586238413.png",
+        image: "/images/J4-9.JPG",
         href: "#",
     },
     {
         id: "look-5",
         title: "LOOK 05",
-        image: "/images/look_5_1772585794296.png",
+        image: "/images/J4-11.JPG",
         href: "#",
     },
     {
         id: "look-6",
         title: "LOOK 06",
-        image: "/images/look_6_new_1772586258677.png",
+        image: "/images/J4-13.JPG",
         href: "#",
     },
 ];
@@ -57,13 +57,13 @@ export function LookbookSection({ items = defaultItems }: LookbookSectionProps) 
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
     return (
-        <div className="bg-background text-foreground min-h-screen">
-            <SiteHeader />
+        <div className="bg-background text-foreground min-h-screen relative">
+            <TransparentHeader absolute={true} />
 
             {/* Hero Image */}
             <div className="relative h-screen w-full overflow-hidden">
                 <img
-                    src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2070&auto=format&fit=crop"
+                    src="/images/J4-10.JPG"
                     alt="Brand Hero Banner"
                     className="absolute inset-0 h-full w-full object-cover pt-[73px]"
                 />
