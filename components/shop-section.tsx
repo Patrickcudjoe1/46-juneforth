@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { SiteHeader } from "@/components/site-header";
 import { ArrowLeft } from "lucide-react";
+import { useCart } from "@/components/cart-provider";
 
 export interface Product {
     id: string;
@@ -207,6 +208,7 @@ const products: Product[] = [
 import { motion, AnimatePresence } from "framer-motion";
 
 export function ShopSection() {
+    const { addItem } = useCart();
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [showProductInfo, setShowProductInfo] = useState(false);
@@ -228,8 +230,8 @@ export function ShopSection() {
     };
 
     const handleAddToCart = () => {
-        if (selectedSize) {
-            alert(`Added ${selectedProduct?.name} (Size: ${selectedSize}) to cart!`);
+        if (selectedSize && selectedProduct) {
+            addItem(selectedProduct, selectedSize);
             handleClose();
         }
     };

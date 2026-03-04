@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { User, ShoppingCart } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
+import { useCart } from "@/components/cart-provider";
 
 const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => {
     return (
@@ -21,6 +22,7 @@ export interface SiteHeaderProps {
 }
 
 export const SiteHeader = ({ leftAction, hideThemeToggle }: SiteHeaderProps) => {
+    const { totalItems } = useCart();
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50 flex w-full items-center justify-between bg-background px-6 py-4 md:px-12">
@@ -48,7 +50,7 @@ export const SiteHeader = ({ leftAction, hideThemeToggle }: SiteHeaderProps) => 
                     aria-label="Cart"
                 >
                     <ShoppingCart className="h-5 w-5" strokeWidth={1.5} />
-                    <span className="font-mono text-xs">(0)</span>
+                    <span className="font-mono text-xs">({totalItems})</span>
                 </Link>
             </div>
         </header>
