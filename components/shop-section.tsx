@@ -403,9 +403,9 @@ export function ShopSection() {
             <main className="pt-[73px]">
 
                 {/* Sub-Header Filter Row */}
-                <div className="flex items-center px-6 py-4 border-b border-border/50 overflow-x-auto whitespace-nowrap [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
+                <div className="flex items-center px-6 py-4 overflow-x-auto whitespace-nowrap [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
                     <nav className="flex items-center gap-6 md:gap-8 text-xs md:text-sm tracking-widest mx-auto font-mono">
-                        <button className="font-bold border-b border-foreground">NEW</button>
+                        <button className="font-bold text-foreground">NEW</button>
                         <button className="text-foreground/50 hover:text-foreground transition-colors uppercase">MENS</button>
                         <button className="text-foreground/50 hover:text-foreground transition-colors uppercase">WOMENS</button>
                         <button className="text-foreground/50 hover:text-foreground transition-colors uppercase">SLIDES</button>
