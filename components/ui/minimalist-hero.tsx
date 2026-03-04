@@ -39,83 +39,87 @@ export const MinimalistHero = ({
         className
       )}
     >
-      <TransparentHeader logoText={logoText} absolute={true} />
-
-      <div className="relative grid w-full max-w-7xl flex-grow grid-cols-1 items-center pb-12 md:pb-0 md:grid-cols-12 md:gap-4 lg:gap-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1 }}
-          className="z-10 order-3 mt-8 text-center md:order-1 md:col-span-3 md:mt-0 md:text-left"
+      {/* Fullscreen Video Background */}
+      {videoSrc && (
+        <video
+          key={videoSrc}
+          autoPlay
+          loop
+          muted
+          playsInline
+          disablePictureInPicture
+          preload="auto"
+          suppressHydrationWarning
+          className="absolute inset-0 z-0 h-full w-full object-cover"
         >
-          <p className="mx-auto max-w-xs text-sm leading-relaxed text-foreground/80 md:mx-0">
-            {mainText}
-          </p>
-        </motion.div>
+          <source src={videoSrc} />
+          Your browser does not support the video tag.
+        </video>
+      )}
 
-        <div className="relative order-1 flex h-full items-center justify-center md:order-2 md:col-span-4">
+      {/* Content Wrapper */}
+      <div className="relative z-10 flex h-full w-full max-w-7xl flex-col items-center justify-between">
+        <TransparentHeader logoText={logoText} absolute={false} className="w-full !px-0 pt-0" />
+
+        <div className="flex w-full flex-grow flex-col items-center justify-center gap-8 text-center pb-20 mt-16 md:mt-24">
           <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{
-              duration: 0.8,
-              ease: [0.22, 1, 0.36, 1],
-              delay: 0.2,
-            }}
-            className="absolute z-0 h-[300px] w-[300px] rounded-full bg-[var(--hero-circle)]/90 md:h-[400px] md:w-[400px] lg:h-[500px] lg:w-[500px]"
-          />
-          <motion.img
-            src={imageSrc}
-            alt={imageAlt}
-            className="relative z-0 h-auto w-56 scale-150 object-cover md:w-64 lg:w-72"
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 1,
-              ease: [0.22, 1, 0.36, 1],
-              delay: 0.4,
-            }}
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.onerror = null;
-              target.src =
-                "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80";
-            }}
-          />
-        </div>
+            transition={{ duration: 0.6, delay: 1 }}
+          >
+            <p className="mx-auto max-w-xs text-sm leading-relaxed text-white/80 mix-blend-difference hidden md:block">
+              {mainText}
+            </p>
+          </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.2 }}
-          className="z-10 order-2 mt-8 flex flex-col items-center justify-center text-center md:order-3 md:col-span-5 md:mt-0 md:items-center md:text-center pointer-events-none"
-        >
-          <h1 className="max-w-full text-[clamp(3rem,6.5vw,9rem)] font-extrabold leading-[0.85] tracking-tight text-white mix-blend-difference">
-            {overlayText}
-          </h1>
-          <div className="mt-8 hidden gap-4 justify-center md:flex pointer-events-auto">
+          {!videoSrc && imageSrc && (
+            <motion.img
+              src={imageSrc}
+              alt={imageAlt}
+              className="relative z-0 h-auto w-56 object-cover md:w-64 lg:w-72 hidden"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 1,
+                ease: [0.22, 1, 0.36, 1],
+                delay: 0.4,
+              }}
+            />
+          )}
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.2 }}
+            className="flex flex-col items-center justify-center text-center pointer-events-none"
+          >
+            <h1 className="max-w-full text-[clamp(4rem,10vw,12rem)] font-extrabold leading-[0.85] tracking-tight text-white mix-blend-difference drop-shadow-sm">
+              {overlayText}
+            </h1>
+            <div className="mt-12 hidden gap-6 justify-center md:flex pointer-events-auto">
+              <Link href="/shop">
+                <InteractiveHoverButton text="SHOP" />
+              </Link>
+              <Link href="/lookbook">
+                <InteractiveHoverButton text="LOOK BOOK" />
+              </Link>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.4 }}
+            className="mt-8 flex w-full flex-row justify-center items-center gap-4 md:hidden pointer-events-auto"
+          >
             <Link href="/shop">
               <InteractiveHoverButton text="SHOP" />
             </Link>
             <Link href="/lookbook">
               <InteractiveHoverButton text="LOOK BOOK" />
             </Link>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.4 }}
-          className="z-10 order-4 mt-12 flex w-full flex-row justify-center items-center gap-4 md:hidden"
-        >
-          <Link href="/shop">
-            <InteractiveHoverButton text="SHOP" />
-          </Link>
-          <Link href="/lookbook">
-            <InteractiveHoverButton text="LOOK BOOK" />
-          </Link>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
 
       <footer className="z-30 mt-8 flex w-full max-w-7xl items-center justify-between md:mt-0 md:pb-8">
@@ -124,7 +128,7 @@ export const MinimalistHero = ({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 1.3 }}
-          className="text-sm font-medium text-foreground/80"
+          className="text-sm font-medium text-white/80 mix-blend-difference"
         >
           {locationText}
         </motion.div>
