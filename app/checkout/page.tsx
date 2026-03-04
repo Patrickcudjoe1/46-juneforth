@@ -1,10 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { useCart } from "@/components/cart-provider";
 
 export default function CheckoutPage() {
     const { items, subtotal, totalItems } = useCart();
+    const [paymentMethod, setPaymentMethod] = useState<"card" | "momo">("card");
 
     return (
         <main className="min-h-screen bg-background text-foreground font-mono">
@@ -77,38 +79,88 @@ export default function CheckoutPage() {
 
                         {/* Payment */}
                         <div className="space-y-6">
-                            <h2 className="text-sm font-bold tracking-widest border-b border-foreground pb-2 uppercase">Payment Details</h2>
-                            <div className="grid gap-4">
-                                <div className="space-y-2">
-                                    <label htmlFor="card" className="text-xs uppercase tracking-widest text-foreground/70">Card Number</label>
-                                    <input
-                                        id="card"
-                                        type="text"
-                                        className="w-full border border-foreground/20 bg-transparent px-4 py-3 font-mono text-sm tracking-widest transition focus:border-foreground focus:outline-none"
-                                        placeholder="0000 0000 0000 0000"
-                                    />
-                                </div>
-                                <div className="grid gap-4 sm:grid-cols-2">
-                                    <div className="space-y-2">
-                                        <label htmlFor="exp" className="text-xs uppercase tracking-widest text-foreground/70">Expiration</label>
-                                        <input
-                                            id="exp"
-                                            type="text"
-                                            className="w-full border border-foreground/20 bg-transparent px-4 py-3 font-mono text-sm tracking-widest transition focus:border-foreground focus:outline-none"
-                                            placeholder="MM/YY"
-                                        />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <label htmlFor="cvc" className="text-xs uppercase tracking-widest text-foreground/70">Security Code</label>
-                                        <input
-                                            id="cvc"
-                                            type="text"
-                                            className="w-full border border-foreground/20 bg-transparent px-4 py-3 font-mono text-sm tracking-widest transition focus:border-foreground focus:outline-none"
-                                            placeholder="CVC"
-                                        />
-                                    </div>
-                                </div>
+                            <h2 className="text-sm font-bold tracking-widest border-b border-foreground pb-2 uppercase flex items-center justify-between">
+                                Payment Details
+                            </h2>
+
+                            {/* Payment Method Toggle */}
+                            <div className="flex gap-4 border-b border-foreground/10 pb-4">
+                                <button
+                                    onClick={() => setPaymentMethod("card")}
+                                    className={`text-xs font-bold tracking-widest uppercase pb-1 transition-colors ${paymentMethod === "card" ? "text-foreground border-b-2 border-foreground" : "text-foreground/50 hover:text-foreground/80"}`}
+                                >
+                                    Credit Card
+                                </button>
+                                <button
+                                    onClick={() => setPaymentMethod("momo")}
+                                    className={`text-xs font-bold tracking-widest uppercase pb-1 transition-colors ${paymentMethod === "momo" ? "text-foreground border-b-2 border-foreground" : "text-foreground/50 hover:text-foreground/80"}`}
+                                >
+                                    Mobile Money
+                                </button>
                             </div>
+
+                            {paymentMethod === "card" ? (
+                                <div className="grid gap-4 animate-in fade-in duration-300">
+                                    <div className="space-y-2">
+                                        <label htmlFor="card" className="text-xs uppercase tracking-widest text-foreground/70">Card Number</label>
+                                        <input
+                                            id="card"
+                                            type="text"
+                                            className="w-full border border-foreground/20 bg-transparent px-4 py-3 font-mono text-sm tracking-widest transition focus:border-foreground focus:outline-none"
+                                            placeholder="0000 0000 0000 0000"
+                                        />
+                                    </div>
+                                    <div className="grid gap-4 sm:grid-cols-2">
+                                        <div className="space-y-2">
+                                            <label htmlFor="exp" className="text-xs uppercase tracking-widest text-foreground/70">Expiration</label>
+                                            <input
+                                                id="exp"
+                                                type="text"
+                                                className="w-full border border-foreground/20 bg-transparent px-4 py-3 font-mono text-sm tracking-widest transition focus:border-foreground focus:outline-none"
+                                                placeholder="MM/YY"
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <label htmlFor="cvc" className="text-xs uppercase tracking-widest text-foreground/70">Security Code</label>
+                                            <input
+                                                id="cvc"
+                                                type="text"
+                                                className="w-full border border-foreground/20 bg-transparent px-4 py-3 font-mono text-sm tracking-widest transition focus:border-foreground focus:outline-none"
+                                                placeholder="CVC"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className="grid gap-4 animate-in fade-in duration-300">
+                                    <div className="space-y-2">
+                                        <label htmlFor="network" className="text-xs uppercase tracking-widest text-foreground/70">Network Provider</label>
+                                        <select
+                                            id="network"
+                                            defaultValue=""
+                                            className="w-full border border-foreground/20 bg-transparent px-4 py-3 font-mono text-sm tracking-widest transition focus:border-foreground focus:outline-none appearance-none"
+                                        >
+                                            <option value="" disabled>SELECT NETWORK</option>
+                                            <option value="mtn">MTN MOBILE MONEY</option>
+                                            <option value="vodafone">TELECEL CASH</option>
+                                            <option value="airteltigo">AT MONEY</option>
+                                        </select>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <label htmlFor="momoNumber" className="text-xs uppercase tracking-widest text-foreground/70">Mobile Money Number</label>
+                                        <input
+                                            id="momoNumber"
+                                            type="tel"
+                                            className="w-full border border-foreground/20 bg-transparent px-4 py-3 font-mono text-sm tracking-widest transition focus:border-foreground focus:outline-none"
+                                            placeholder="024 000 0000"
+                                        />
+                                    </div>
+                                    <p className="text-xs text-foreground/50 tracking-wide mt-2">
+                                        You will receive a prompt on your phone to authorize this transaction.
+                                    </p>
+                                </div>
+                            )}
+
                         </div>
 
                         <button
