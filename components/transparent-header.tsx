@@ -59,7 +59,7 @@ export interface TransparentHeaderProps {
 }
 
 export const TransparentHeader = ({
-    logoText = "46.",
+    logoText = "46",
     className,
     absolute = true,
     hideThemeToggle = false,
@@ -204,7 +204,7 @@ export const TransparentHeader = ({
 
                         <div className="w-full max-w-4xl mx-auto space-y-8">
                             <h2 className="text-sm font-bold tracking-widest uppercase text-foreground/50">
-                                Search 46.
+                                Search 46
                             </h2>
                             <form className="relative" onSubmit={(e) => { e.preventDefault(); /* Implement actual search redirect or filter logic here */ setSearchOpen(false); }}>
                                 <input

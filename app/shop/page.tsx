@@ -2,7 +2,7 @@ import { ShopSection } from "@/components/shop-section";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Shop | 46.",
+    title: "Shop | 46",
     description: "Browse our collections and latest arrivals.",
 };
 
