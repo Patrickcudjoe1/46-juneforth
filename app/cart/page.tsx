@@ -24,7 +24,7 @@ export default function CartPage() {
             href="/shop"
             className="rounded-full border border-foreground/30 px-4 py-2 text-sm font-medium tracking-[0.18em] text-foreground transition hover:bg-foreground hover:text-background"
           >
-            Continue Shopping
+            To Shopping
           </Link>
         </header>
 
