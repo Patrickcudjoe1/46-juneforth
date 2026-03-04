@@ -30,7 +30,7 @@ export default function AuthPage() {
               onClick={() => setActiveTab("register")}
               className={`text-sm tracking-widest uppercase transition-colors ${activeTab === "register" ? "font-bold text-foreground" : "text-foreground/40 hover:text-foreground/80"}`}
             >
-              Register
+              SIGN UP
             </button>
           </div>
 

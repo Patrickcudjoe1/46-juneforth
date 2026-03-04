@@ -13,27 +13,11 @@ interface MinimalistHeroProps {
   imageSrc: string;
   imageAlt: string;
   overlayText: string;
-  socialLinks: { icon: LucideIcon; href: string }[];
   locationText: string;
   className?: string;
 }
 
-const SocialIcon = ({
-  href,
-  icon: Icon,
-}: {
-  href: string;
-  icon: LucideIcon;
-}) => (
-  <a
-    href={href}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="text-foreground/70 transition-colors hover:text-foreground"
-  >
-    <Icon className="h-5 w-5" />
-  </a>
-);
+
 
 export const MinimalistHero = ({
   logoText,
@@ -41,7 +25,6 @@ export const MinimalistHero = ({
   imageSrc,
   imageAlt,
   overlayText,
-  socialLinks,
   locationText,
   className,
 }: MinimalistHeroProps) => {
@@ -134,16 +117,7 @@ export const MinimalistHero = ({
       </div>
 
       <footer className="z-30 mt-8 flex w-full max-w-7xl items-center justify-between md:mt-0 md:pb-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 1.2 }}
-          className="flex items-center space-x-4 md:hidden"
-        >
-          {socialLinks.map((link, index) => (
-            <SocialIcon key={index} href={link.href} icon={link.icon} />
-          ))}
-        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

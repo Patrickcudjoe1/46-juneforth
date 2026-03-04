@@ -36,8 +36,8 @@ export const SiteHeader = ({ leftAction, hideThemeToggle }: SiteHeaderProps) => 
     }, []);
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 flex w-full items-center justify-between bg-background px-6 py-4 md:px-12">
-            <div className="flex items-center min-w-[32px]">
+        <header className="absolute top-0 left-0 right-0 z-50 flex w-full items-center justify-between bg-transparent px-6 py-4 md:px-12 pointer-events-none">
+            <div className="flex items-center min-w-[32px] pointer-events-auto">
                 {leftAction || (
                     <button className="text-xl opacity-70 hover:opacity-100 transition-opacity">
                         +
@@ -45,7 +45,7 @@ export const SiteHeader = ({ leftAction, hideThemeToggle }: SiteHeaderProps) => 
                 )}
             </div>
 
-            <div className="relative flex flex-1 justify-center z-50">
+            <div className="relative flex flex-1 justify-center z-50 pointer-events-auto">
                 <button
                     onClick={() => setIsFilterOpen(!isFilterOpen)}
                     className="flex items-center gap-2 text-xs md:text-sm font-mono tracking-widest font-bold text-foreground hover:opacity-70 transition-opacity uppercase"
@@ -70,8 +70,8 @@ export const SiteHeader = ({ leftAction, hideThemeToggle }: SiteHeaderProps) => 
                                         setIsFilterOpen(false);
                                     }}
                                     className={`text-left px-6 py-4 text-xs font-mono tracking-widest uppercase transition-colors ${activeCategory === cat
-                                            ? "bg-foreground text-background font-bold"
-                                            : "hover:bg-foreground/5 text-foreground/70 hover:text-foreground"
+                                        ? "bg-foreground text-background font-bold"
+                                        : "hover:bg-foreground/5 text-foreground/70 hover:text-foreground"
                                         }`}
                                 >
                                     {cat}
@@ -82,7 +82,7 @@ export const SiteHeader = ({ leftAction, hideThemeToggle }: SiteHeaderProps) => 
                 </AnimatePresence>
             </div>
 
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-6 pointer-events-auto">
                 {!hideThemeToggle && <ThemeToggle />}
                 <Link
                     href="/"

@@ -95,7 +95,7 @@ export const TransparentHeader = ({
                                 href="/"
                                 className={cn(
                                     "inline-flex h-9 w-9 items-center justify-center rounded-full border shadow-sm transition",
-                                    forceLightMode ? "border-black/30 bg-white/80 text-black hover:bg-black hover:text-white" : "border-foreground/30 bg-background/80 text-foreground hover:bg-foreground hover:text-background"
+                                    forceLightMode ? "border-black/30 text-black hover:bg-black hover:text-white" : "border-foreground/30 text-foreground hover:bg-foreground hover:text-background"
                                 )}
                                 aria-label="Home"
                             >
@@ -110,7 +110,7 @@ export const TransparentHeader = ({
                             onClick={() => setSearchOpen(true)}
                             className={cn(
                                 "inline-flex h-9 w-9 items-center justify-center rounded-full border shadow-sm transition relative",
-                                forceLightMode ? "border-black/30 bg-white/80 text-black hover:bg-black hover:text-white" : "border-foreground/30 bg-background/80 text-foreground hover:bg-foreground hover:text-background"
+                                forceLightMode ? "border-black/30 text-black hover:bg-black hover:text-white" : "border-foreground/30 text-foreground hover:bg-foreground hover:text-background"
                             )}
                             aria-label="Search"
                         >
@@ -123,7 +123,7 @@ export const TransparentHeader = ({
                             href="/cart"
                             className={cn(
                                 "inline-flex h-9 w-9 items-center justify-center rounded-full border shadow-sm transition relative",
-                                forceLightMode ? "border-black/30 bg-white/80 text-black hover:bg-black hover:text-white" : "border-foreground/30 bg-background/80 text-foreground hover:bg-foreground hover:text-background"
+                                forceLightMode ? "border-black/30 text-black hover:bg-black hover:text-white" : "border-foreground/30 text-foreground hover:bg-foreground hover:text-background"
                             )}
                             aria-label="Cart"
                         >
@@ -144,7 +144,7 @@ export const TransparentHeader = ({
                             href="/auth"
                             className={cn(
                                 "inline-flex h-9 w-9 items-center justify-center rounded-full border shadow-sm transition",
-                                forceLightMode ? "border-black/30 bg-white/80 text-black hover:bg-black hover:text-white" : "border-foreground/30 bg-background/80 text-foreground hover:bg-foreground hover:text-background"
+                                forceLightMode ? "border-black/30 text-black hover:bg-black hover:text-white" : "border-foreground/30 text-foreground hover:bg-foreground hover:text-background"
                             )}
                             aria-label="Account"
                         >
@@ -162,7 +162,7 @@ export const TransparentHeader = ({
                             onClick={() => setSearchOpen(true)}
                             className={cn(
                                 "inline-flex h-9 w-9 items-center justify-center rounded-full border shadow-sm transition relative",
-                                forceLightMode ? "border-black/30 bg-white/80 text-black hover:bg-black hover:text-white" : "border-foreground/30 bg-background/80 text-foreground hover:bg-foreground hover:text-background"
+                                forceLightMode ? "border-black/30 text-black hover:bg-black hover:text-white" : "border-foreground/30 text-foreground hover:bg-foreground hover:text-background"
                             )}
                             aria-label="Search"
                         >
@@ -252,7 +252,7 @@ export const TransparentHeader = ({
                                         onClick={() => setMobileOpen(false)}
                                         className={cn(
                                             "inline-flex h-9 w-9 items-center justify-center rounded-full border shadow-sm transition",
-                                            forceLightMode ? "border-black/30 bg-white/80 text-black hover:bg-black hover:text-white" : "border-foreground/30 bg-background/80 text-foreground hover:bg-foreground hover:text-background"
+                                            forceLightMode ? "border-black/30 text-black hover:bg-black hover:text-white" : "border-foreground/30 text-foreground hover:bg-foreground hover:text-background"
                                         )}
                                         aria-label="Home"
                                     >
@@ -270,7 +270,7 @@ export const TransparentHeader = ({
                                     href="/cart"
                                     className={cn(
                                         "inline-flex h-9 w-9 items-center justify-center rounded-full border shadow-sm transition",
-                                        forceLightMode ? "border-black/30 bg-white/80 text-black hover:bg-black hover:text-white" : "border-foreground/30 bg-background/80 text-foreground hover:bg-foreground hover:text-background"
+                                        forceLightMode ? "border-black/30 text-black hover:bg-black hover:text-white" : "border-foreground/30 text-foreground hover:bg-foreground hover:text-background"
                                     )}
                                     aria-label="Cart"
                                     onClick={() => setMobileOpen(false)}
@@ -288,7 +288,7 @@ export const TransparentHeader = ({
                                     href="/auth"
                                     className={cn(
                                         "inline-flex h-9 w-9 items-center justify-center rounded-full border shadow-sm transition",
-                                        forceLightMode ? "border-black/30 bg-white/80 text-black hover:bg-black hover:text-white" : "border-foreground/30 bg-background/80 text-foreground hover:bg-foreground hover:text-background"
+                                        forceLightMode ? "border-black/30 text-black hover:bg-black hover:text-white" : "border-foreground/30 text-foreground hover:bg-foreground hover:text-background"
                                     )}
                                     aria-label="Account"
                                     onClick={() => setMobileOpen(false)}

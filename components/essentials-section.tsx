@@ -5,7 +5,7 @@ export function EssentialsSection() {
         <section className="w-full bg-white text-black">
             <div className="w-[95%] lg:w-[90%] mx-auto py-16 md:py-24">
                 <h2 className="text-center text-sm md:text-base tracking-[0.25em] uppercase mb-12 md:mb-16 font-serif">
-                    ESSENTIALS SPRING
+                    DISCOVER WHAT'S NEW
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
                     {/* Left Column Group */}

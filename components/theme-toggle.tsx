@@ -30,7 +30,7 @@ export const ThemeToggle = () => {
         <button
             type="button"
             onClick={toggle}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-foreground/20 bg-background/60 text-foreground shadow-sm transition hover:bg-foreground hover:text-background"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-foreground/20 text-foreground shadow-sm transition hover:bg-foreground hover:text-background"
             aria-label="Toggle theme"
         >
             <Icon className="h-4 w-4" />

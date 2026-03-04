@@ -17,7 +17,7 @@ export default function CartPage() {
         forceLightMode={true}
         hideElements={["cart"]}
       />
-      <div className="mx-auto w-full max-w-5xl px-6 py-10 md:px-10 mt-16 pt-24">
+      <div className="mx-auto w-full max-w-5xl px-6 pb-10 md:px-10 pt-40">
         <header className="flex items-center justify-between gap-4">
           <div>
             <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">

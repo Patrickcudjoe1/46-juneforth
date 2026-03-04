@@ -17,7 +17,7 @@ export default function CheckoutPage() {
                 forceLightMode={true}
                 hideElements={["cart"]}
             />
-            <div className="mx-auto w-full max-w-6xl px-6 py-10 md:px-10 mt-16 pt-24">
+            <div className="mx-auto w-full max-w-6xl px-6 pb-10 md:px-10 pt-40">
                 <header className="mb-10 flex items-center justify-between">
                     <Link
                         href="/cart"
