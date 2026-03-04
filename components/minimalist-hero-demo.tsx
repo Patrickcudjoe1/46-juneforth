@@ -3,11 +3,6 @@ import { Facebook, Instagram, Twitter, Linkedin } from "lucide-react";
 import { MinimalistHero } from "@/components/ui/minimalist-hero";
 
 const MinimalistHeroDemo = () => {
-  const navLinks = [
-    { label: "HOME", href: "/" },
-    { label: "LOOKBOOK", href: "/lookbook" },
-  ];
-
   const socialLinks = [
     { icon: Facebook, href: "#" },
     { icon: Instagram, href: "#" },
@@ -17,7 +12,6 @@ const MinimalistHeroDemo = () => {
   return (
     <MinimalistHero
       logoText="46."
-      navLinks={navLinks}
       mainText="YOUNG AT HEART WITH A VISION."
       imageSrc="/image 13.webp"
       imageAlt="A portrait of a person in a black turtleneck, in profile."

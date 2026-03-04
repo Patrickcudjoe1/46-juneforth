@@ -59,10 +59,11 @@ export function LookbookSection({ items = defaultItems }: LookbookSectionProps) 
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
     return (
-        <div className="bg-background text-foreground min-h-screen relative">
+        <div className="bg-white text-black min-h-screen relative">
             <TransparentHeader
                 absolute={true}
-                navLinks={[{ label: "SHOP", href: "/shop" }]}
+                hideThemeToggle={true}
+                forceLightMode={true}
             />
 
             {/* Hero Image */}
@@ -82,7 +83,7 @@ export function LookbookSection({ items = defaultItems }: LookbookSectionProps) 
             {/* Brand Description */}
             <div className="px-6 py-16 md:py-24 text-center">
                 <div className="max-w-2xl mx-auto">
-                    <p className="text-foreground/80 text-sm md:text-base font-light tracking-wider leading-relaxed">
+                    <p className="text-black/80 text-sm md:text-base font-light tracking-wider leading-relaxed">
                         A contemporary brand rooted in timeless design and exceptional craftsmanship.
                         Our collections celebrate the intersection of luxury and understated elegance,
                         creating pieces that transcend seasons and trends.
@@ -101,17 +102,17 @@ export function LookbookSection({ items = defaultItems }: LookbookSectionProps) 
                             onMouseEnter={() => setHoveredIndex(index)}
                             onMouseLeave={() => setHoveredIndex(null)}
                         >
-                            <div className="relative aspect-[3/4] w-full overflow-hidden bg-foreground/5 dark:bg-foreground/10">
+                            <div className="relative aspect-[3/4] w-full overflow-hidden bg-black/5">
                                 <img
                                     src={item.image}
                                     alt={item.title || ""}
-                                    className="absolute inset-0 h-full w-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out mix-blend-multiply dark:mix-blend-normal"
+                                    className="absolute inset-0 h-full w-full object-cover group-hover:scale-[1.03] transition-transform duration-700 ease-out mix-blend-multiply"
                                 />
                             </div>
 
                             {item.title && (
                                 <div className="flex flex-col items-center">
-                                    <p className="font-mono text-sm tracking-widest text-center text-foreground font-bold uppercase">{item.title}</p>
+                                    <p className="font-mono text-sm tracking-widest text-center text-black font-bold uppercase">{item.title}</p>
                                 </div>
                             )}
                         </a>

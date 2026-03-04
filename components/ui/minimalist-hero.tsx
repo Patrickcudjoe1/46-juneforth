@@ -9,7 +9,6 @@ import { TransparentHeader } from "@/components/transparent-header";
 
 interface MinimalistHeroProps {
   logoText: string;
-  navLinks: { label: string; href: string }[];
   mainText: string;
   imageSrc: string;
   imageAlt: string;
@@ -38,7 +37,6 @@ const SocialIcon = ({
 
 export const MinimalistHero = ({
   logoText,
-  navLinks,
   mainText,
   imageSrc,
   imageAlt,
@@ -56,7 +54,7 @@ export const MinimalistHero = ({
         className
       )}
     >
-      <TransparentHeader logoText={logoText} navLinks={navLinks} absolute={true} />
+      <TransparentHeader logoText={logoText} absolute={true} />
 
       <div className="relative grid w-full max-w-7xl flex-grow grid-cols-1 items-center pb-12 md:pb-0 md:grid-cols-12 md:gap-4 lg:gap-8">
         <motion.div
