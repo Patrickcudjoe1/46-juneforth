@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 
 import Link from "next/link";
-import { User, ShoppingCart } from "lucide-react";
+import { User, ShoppingCart, Home } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 import { useCart } from "@/components/cart-provider";
 
@@ -51,6 +51,13 @@ export const SiteHeader = ({ leftAction, hideThemeToggle }: SiteHeaderProps) => 
 
             <div className="flex items-center gap-6">
                 {!hideThemeToggle && <ThemeToggle />}
+                <Link
+                    href="/"
+                    className="flex items-center justify-center hover:opacity-70 transition-opacity text-foreground"
+                    aria-label="Home"
+                >
+                    <Home className="h-5 w-5" strokeWidth={1.5} />
+                </Link>
                 <Link
                     href="/cart"
                     className="flex items-center gap-2 hover:opacity-70 transition-opacity text-foreground"

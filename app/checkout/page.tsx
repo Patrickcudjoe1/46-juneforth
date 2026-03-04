@@ -206,7 +206,7 @@ export default function CheckoutPage() {
                         <div className="space-y-3 pt-6 border-t border-black/10 text-xs tracking-widest uppercase">
                             <div className="flex justify-between">
                                 <span className="text-black/70">Subtotal</span>
-                                <span>${subtotal.toFixed(2)}</span>
+                                <span>GH₵{subtotal.toFixed(2)}</span>
                             </div>
                             <div className="flex justify-between">
                                 <span className="text-black/70">Shipping</span>
@@ -214,7 +214,7 @@ export default function CheckoutPage() {
                             </div>
                             <div className="flex justify-between font-bold pt-4 border-t border-black/10">
                                 <span>Total</span>
-                                <span>${subtotal.toFixed(2)}</span>
+                                <span>GH₵{subtotal.toFixed(2)}</span>
                             </div>
                         </div>
                     </aside>

@@ -127,7 +127,7 @@ export default function CartPage() {
             <div className="mt-4 space-y-3 text-sm">
               <div className="flex items-center justify-between">
                 <span className="text-black/70">Subtotal ({totalItems} items)</span>
-                <span className="font-medium">${subtotal.toFixed(2)}</span>
+                <span className="font-medium">GH₵{subtotal.toFixed(2)}</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-black/70">Shipping</span>
@@ -136,7 +136,7 @@ export default function CartPage() {
               <div className="h-px w-full bg-black/10" />
               <div className="flex items-center justify-between">
                 <span className="text-black/70">Total</span>
-                <span className="text-base font-semibold">${subtotal.toFixed(2)}</span>
+                <span className="text-base font-semibold">GH₵{subtotal.toFixed(2)}</span>
               </div>
             </div>
 
