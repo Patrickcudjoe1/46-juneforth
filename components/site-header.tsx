@@ -32,12 +32,12 @@ export const SiteHeader = ({ leftAction, hideThemeToggle }: SiteHeaderProps) => 
                 )}
             </div>
 
-            <nav className="hidden items-center gap-6 md:flex text-xs font-mono tracking-widest text-foreground/70 uppercase">
-                <Link href="/" className="hover:text-foreground transition-colors">NEW</Link>
-                <Link href="/" className="hover:text-foreground transition-colors">MENS</Link>
-                <Link href="/" className="hover:text-foreground transition-colors">WOMENS</Link>
-                <Link href="/" className="hover:text-foreground transition-colors">SLIDES</Link>
-                <Link href="/" className="hover:text-foreground transition-colors">ACCESSORIES</Link>
+            <nav className="flex flex-1 items-center gap-5 md:gap-8 overflow-x-auto whitespace-nowrap [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] text-xs md:text-sm font-mono tracking-widest text-foreground/70 mx-4 justify-start md:justify-center pb-0">
+                <Link href="/" className="font-bold text-foreground transition-colors uppercase">NEW</Link>
+                <Link href="/" className="hover:text-foreground transition-colors uppercase">MENS</Link>
+                <Link href="/" className="hover:text-foreground transition-colors uppercase">WOMENS</Link>
+                <Link href="/" className="hover:text-foreground transition-colors uppercase">SLIDES</Link>
+                <Link href="/" className="hover:text-foreground transition-colors uppercase">ACCESSORIES</Link>
             </nav>
 
             <div className="flex items-center gap-6">
