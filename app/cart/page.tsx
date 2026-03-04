@@ -133,13 +133,22 @@ export default function CartPage() {
               </div>
             </div>
 
-            <button
-              type="button"
-              disabled={isEmpty}
-              className="mt-6 w-full rounded-full bg-foreground px-5 py-3 text-sm font-medium tracking-widest text-background uppercase disabled:opacity-50 disabled:cursor-not-allowed transition hover:bg-foreground/90 hover:scale-[1.02] active:scale-[0.98]"
-            >
-              Checkout
-            </button>
+            {isEmpty ? (
+              <button
+                type="button"
+                disabled
+                className="mt-6 w-full rounded-full bg-foreground px-5 py-3 text-sm font-medium tracking-widest text-background uppercase flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed transition hover:bg-foreground/90"
+              >
+                Checkout
+              </button>
+            ) : (
+              <Link
+                href="/checkout"
+                className="mt-6 flex w-full items-center justify-center rounded-full bg-foreground px-5 py-3 text-sm font-medium tracking-widest text-background uppercase transition hover:bg-foreground/90 hover:scale-[1.02] active:scale-[0.98]"
+              >
+                Checkout
+              </Link>
+            )}
             <p className="mt-3 text-xs text-foreground/60 text-center">
               {isEmpty ? "Checkout will unlock once items are added." : "Taxes computed at checkout."}
             </p>
