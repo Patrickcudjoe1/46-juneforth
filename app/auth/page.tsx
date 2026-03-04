@@ -16,9 +16,13 @@ export default function AuthPage() {
 
       <main className="flex min-h-screen flex-col items-center justify-center p-6 md:p-12">
         <div className="w-full max-w-md pt-24">
-          <h1 className="mb-8 text-6xl md:text-8xl font-mono font-bold tracking-[0.2em] text-foreground text-center">
-            46
-          </h1>
+          <div className="mb-8 flex justify-center">
+            <img
+              src="/images/LOGO.jpg"
+              alt="46"
+              className="h-16 md:h-24 object-contain mix-blend-multiply dark:mix-blend-screen brightness-0 dark:invert"
+            />
+          </div>
           <div className="mb-12 flex justify-center space-x-8 border-b border-foreground/20 pb-4">
             <button
               onClick={() => setActiveTab("login")}

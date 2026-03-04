@@ -44,7 +44,7 @@ export const MinimalistHero = ({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1 }}
-          className="z-20 order-3 mt-8 text-center md:order-1 md:col-span-3 md:mt-0 md:text-left"
+          className="z-10 order-3 mt-8 text-center md:order-1 md:col-span-3 md:mt-0 md:text-left"
         >
           <p className="mx-auto max-w-xs text-sm leading-relaxed text-foreground/80 md:mx-0">
             {mainText}
@@ -65,7 +65,7 @@ export const MinimalistHero = ({
           <motion.img
             src={imageSrc}
             alt={imageAlt}
-            className="relative z-10 h-auto w-56 scale-150 object-cover md:w-64 lg:w-72"
+            className="relative z-0 h-auto w-56 scale-150 object-cover md:w-64 lg:w-72"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
@@ -86,7 +86,7 @@ export const MinimalistHero = ({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.2 }}
-          className="z-20 order-2 mt-8 flex flex-col items-center justify-center text-center md:order-3 md:col-span-5 md:mt-0 md:items-center md:text-center"
+          className="z-10 order-2 mt-8 flex flex-col items-center justify-center text-center md:order-3 md:col-span-5 md:mt-0 md:items-center md:text-center pointer-events-none"
         >
           <h1 className="max-w-full text-[clamp(3rem,6.5vw,9rem)] font-extrabold leading-[0.85] tracking-tight text-foreground">
             {overlayText}
@@ -105,7 +105,7 @@ export const MinimalistHero = ({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.4 }}
-          className="z-20 order-4 mt-12 flex w-full flex-row justify-center items-center gap-4 md:hidden"
+          className="z-10 order-4 mt-12 flex w-full flex-row justify-center items-center gap-4 md:hidden"
         >
           <Link href="/shop">
             <InteractiveHoverButton text="SHOP" />

@@ -76,15 +76,19 @@ export const TransparentHeader = ({
     }, []);
 
     return (
-        <div className={cn("w-full z-50 flex flex-col items-center", absolute ? "absolute top-8 left-0 right-0 px-8 md:px-12" : "px-6 py-8 md:px-12", forceLightMode ? "text-black [&_*]:border-black" : "text-foreground", className)}>
+        <div className={cn("w-full z-[100] flex flex-col items-center", absolute ? "absolute top-8 left-0 right-0 px-8 md:px-12" : "px-6 py-8 md:px-12", forceLightMode ? "text-black [&_*]:border-black" : "text-foreground", className)}>
             <header className="flex w-full max-w-7xl items-center justify-between">
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <Link href="/" className={cn("text-2xl md:text-3xl font-mono font-bold tracking-[0.2em]", forceLightMode ? "text-black" : "text-foreground")}>
-                        {logoText}
+                    <Link href="/" className="flex items-center">
+                        <img
+                            src="/images/LOGO.jpg"
+                            alt={logoText || "46"}
+                            className={cn("h-6 md:h-8 object-contain dark:invert", forceLightMode && "invert-0 dark:invert-0")}
+                        />
                     </Link>
                 </motion.div>
 
