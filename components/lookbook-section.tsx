@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { TransparentHeader } from "@/components/transparent-header";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 
 export interface LookbookItem {
     id: string;
@@ -24,31 +26,31 @@ const defaultItems: LookbookItem[] = [
     {
         id: "look-2",
         title: "LOOK 02",
-        image: "/images/J4-3.JPG",
+        image: "/images/J4-3.jpg",
         href: "#",
     },
     {
         id: "look-3",
         title: "LOOK 03",
-        image: "/images/J4-7.JPG",
+        image: "/images/J4-7.jpg",
         href: "#",
     },
     {
         id: "look-4",
         title: "LOOK 04",
-        image: "/images/J4-9.JPG",
+        image: "/images/J4-9.jpg",
         href: "#",
     },
     {
         id: "look-5",
         title: "LOOK 05",
-        image: "/images/J4-11.JPG",
+        image: "/images/J4-11.jpg",
         href: "#",
     },
     {
         id: "look-6",
         title: "LOOK 06",
-        image: "/images/J4-13.JPG",
+        image: "/images/J4-13.jpg",
         href: "#",
     },
 ];
@@ -58,16 +60,23 @@ export function LookbookSection({ items = defaultItems }: LookbookSectionProps) 
 
     return (
         <div className="bg-background text-foreground min-h-screen relative">
-            <TransparentHeader absolute={true} />
+            <TransparentHeader
+                absolute={true}
+                navLinks={[{ label: "SHOP", href: "/shop" }]}
+            />
 
             {/* Hero Image */}
             <div className="relative h-screen w-full overflow-hidden">
                 <img
-                    src="/images/J4-10.JPG"
+                    src="/images/J4-10.jpg"
                     alt="Brand Hero Banner"
                     className="absolute inset-0 h-full w-full object-cover pt-[73px]"
                 />
-                <div className="absolute inset-0 bg-black/20 mt-[73px]"></div>
+                <div className="absolute inset-0 bg-black/20 mt-[73px] flex items-center justify-center">
+                    <Link href="/shop" className="mt-16">
+                        <InteractiveHoverButton text="SHOP" />
+                    </Link>
+                </div>
             </div>
 
             {/* Brand Description */}
