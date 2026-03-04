@@ -7,7 +7,7 @@ const MinimalistHeroDemo = () => {
     <MinimalistHero
       logoText="46"
       mainText="YOUNG AT HEART WITH A VISION."
-      videoSrc="/VID-2.webm"
+      videoSrc="/VID-1.webm"
       overlayText="JUNEFORTH*"
       locationText=""
     />
