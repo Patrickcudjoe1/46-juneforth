@@ -39,22 +39,16 @@ export const MinimalistHero = ({
         className
       )}
     >
-      {/* Fullscreen Video Background */}
-      {videoSrc && (
-        <video
-          key={videoSrc}
-          autoPlay
-          loop
-          muted
-          playsInline
-          disablePictureInPicture
-          preload="auto"
-          suppressHydrationWarning
+      {/* Fullscreen Image Background */}
+      {imageSrc && (
+        <motion.img
+          src={imageSrc}
+          alt={imageAlt}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
           className="absolute inset-0 z-0 h-full w-full object-cover"
-        >
-          <source src={videoSrc} />
-          Your browser does not support the video tag.
-        </video>
+        />
       )}
 
       {/* Content Wrapper */}
@@ -71,21 +65,6 @@ export const MinimalistHero = ({
               {mainText}
             </p>
           </motion.div>
-
-          {!videoSrc && imageSrc && (
-            <motion.img
-              src={imageSrc}
-              alt={imageAlt}
-              className="relative z-0 h-auto w-56 object-cover md:w-64 lg:w-72 hidden"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 1,
-                ease: [0.22, 1, 0.36, 1],
-                delay: 0.4,
-              }}
-            />
-          )}
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
