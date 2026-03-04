@@ -85,21 +85,19 @@ export function LookbookSection({ items = defaultItems }: LookbookSectionProps) 
                         VISUAL ARCHIVE
                     </h1>
                     <p className="mt-6 max-w-md text-sm md:text-base leading-relaxed text-white/90 mix-blend-difference">
-                        Where streetwear becomes art. Every piece tells a story.
+                        YOUNG AT HEART WITH A VISION.
                     </p>
-                    <Link href="/shop" className="mt-12 pointer-events-auto">
-                        <InteractiveHoverButton text="SHOP" />
-                    </Link>
                 </div>
             </div>
 
             {/* Brand Description */}
             <div className="px-6 py-16 md:py-24 text-center">
-                <div className="max-w-2xl mx-auto">
-                    <p className="text-black/80 text-sm md:text-base font-light tracking-wider leading-relaxed">
-                        A contemporary brand rooted in timeless design and exceptional craftsmanship.
-                        Our collections celebrate the intersection of luxury and understated elegance,
-                        creating pieces that transcend seasons and trends.
+                <div className="max-w-2xl mx-auto flex flex-col items-center gap-4">
+                    <h2 className="text-2xl md:text-4xl font-extrabold tracking-tight text-black uppercase">
+                        The JUNEFORTH* Lookbook
+                    </h2>
+                    <p className="text-black/70 text-sm md:text-base font-medium tracking-wide">
+                        A canvas of style, worn by the community
                     </p>
                 </div>
             </div>
