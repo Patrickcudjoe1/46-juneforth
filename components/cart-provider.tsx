@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, ReactNode, useEffect } from "react";
-import { Product } from "./shop-section";
+import { Product } from "./product-provider";
 
 export interface CartItem {
     product: Product;

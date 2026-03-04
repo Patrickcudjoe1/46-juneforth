@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 
 import Link from "next/link";
-import { User, ShoppingCart, Home, ChevronDown } from "lucide-react";
+import { User, ShoppingBag, Home, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ThemeToggle } from "./theme-toggle";
 import { useCart } from "@/components/cart-provider";
@@ -96,7 +96,7 @@ export const SiteHeader = ({ leftAction, hideThemeToggle }: SiteHeaderProps) => 
                     className="flex items-center gap-2 hover:opacity-70 transition-opacity text-foreground"
                     aria-label="Cart"
                 >
-                    <ShoppingCart className="h-5 w-5" strokeWidth={1.5} />
+                    <ShoppingBag className="h-5 w-5" strokeWidth={1.5} />
                     <span className="font-mono text-xs">
                         ({mounted ? totalItems : 0})
                     </span>
