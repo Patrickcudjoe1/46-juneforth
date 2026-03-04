@@ -17,7 +17,7 @@ export default function CartPage() {
             </p>
           </div>
           <Link
-            href="/gallery"
+            href="/"
             className="rounded-full border border-foreground/30 px-4 py-2 text-sm font-medium tracking-[0.18em] text-foreground transition hover:bg-foreground hover:text-background"
           >
             Continue
@@ -50,10 +50,10 @@ export default function CartPage() {
                     Back home
                   </Link>
                   <Link
-                    href="/gallery"
+                    href="/shop"
                     className="inline-flex items-center justify-center rounded-full border border-foreground/30 px-5 py-2 text-sm font-medium text-foreground transition hover:bg-foreground hover:text-background"
                   >
-                    Browse gallery
+                    shop
                   </Link>
                 </div>
               </div>

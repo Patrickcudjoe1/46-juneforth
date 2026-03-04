@@ -277,8 +277,12 @@ export const MinimalistHero = ({
             {overlayText}
           </h1>
           <div className="mt-8 hidden gap-4 justify-center md:flex">
-            <InteractiveHoverButton text="SHOP" />
-            <InteractiveHoverButton text="LOOK BOOK" />
+            <Link href="/shop">
+              <InteractiveHoverButton text="SHOP" />
+            </Link>
+            <Link href="/lookbook">
+              <InteractiveHoverButton text="LOOK BOOK" />
+            </Link>
           </div>
         </motion.div>
 
@@ -288,8 +292,12 @@ export const MinimalistHero = ({
           transition={{ duration: 0.6, delay: 1.4 }}
           className="z-20 order-4 mt-12 flex w-full flex-col items-center gap-4 md:hidden"
         >
-          <InteractiveHoverButton text="SHOP" />
-          <InteractiveHoverButton text="LOOK BOOK" />
+          <Link href="/shop">
+            <InteractiveHoverButton text="SHOP" />
+          </Link>
+          <Link href="/lookbook">
+            <InteractiveHoverButton text="LOOK BOOK" />
+          </Link>
         </motion.div>
       </div>
 
