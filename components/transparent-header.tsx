@@ -81,7 +81,7 @@ export const TransparentHeader = ({
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <Link href="/" className={cn("text-xl font-bold tracking-wider", forceLightMode ? "text-black" : "text-foreground")}>
+                    <Link href="/" className={cn("text-2xl md:text-3xl font-mono font-bold tracking-[0.2em]", forceLightMode ? "text-black" : "text-foreground")}>
                         {logoText}
                     </Link>
                 </motion.div>

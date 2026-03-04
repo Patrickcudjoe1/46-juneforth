@@ -13,7 +13,10 @@ export default function AuthPage() {
 
       <main className="flex min-h-screen flex-col items-center justify-center p-6 md:p-12">
         <div className="w-full max-w-md pt-24">
-          <div className="mb-12 flex space-x-8 border-b border-foreground/20 pb-4">
+          <h1 className="mb-8 text-6xl md:text-8xl font-mono font-bold tracking-[0.2em] text-foreground text-center">
+            46
+          </h1>
+          <div className="mb-12 flex justify-center space-x-8 border-b border-foreground/20 pb-4">
             <button
               onClick={() => setActiveTab("login")}
               className={`text-sm tracking-widest uppercase transition-colors ${activeTab === "login" ? "font-bold text-foreground" : "text-foreground/40 hover:text-foreground/80"}`}
