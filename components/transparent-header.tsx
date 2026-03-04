@@ -92,7 +92,7 @@ export const TransparentHeader = ({
                     </Link>
                 </motion.div>
 
-                <div className="hidden items-center gap-6 md:flex">
+                <div className={cn("hidden items-center gap-6 md:flex", forceLightMode ? "" : "text-white mix-blend-difference")}>
                     {!hideElements.includes("home") && (
                         <nav className="flex items-center gap-3">
                             <Link
@@ -147,7 +147,7 @@ export const TransparentHeader = ({
                     {!hideThemeToggle && <ThemeToggle />}
                 </div>
 
-                <div className="flex items-center gap-5 md:hidden">
+                <div className={cn("flex items-center gap-5 md:hidden", forceLightMode ? "" : "text-white mix-blend-difference")}>
                     {/* Mobile Search Button */}
                     {!hideElements.includes("search") && (
                         <button

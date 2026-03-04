@@ -88,10 +88,10 @@ export const MinimalistHero = ({
           transition={{ duration: 0.6, delay: 1.2 }}
           className="z-10 order-2 mt-8 flex flex-col items-center justify-center text-center md:order-3 md:col-span-5 md:mt-0 md:items-center md:text-center pointer-events-none"
         >
-          <h1 className="max-w-full text-[clamp(3rem,6.5vw,9rem)] font-extrabold leading-[0.85] tracking-tight text-foreground">
+          <h1 className="max-w-full text-[clamp(3rem,6.5vw,9rem)] font-extrabold leading-[0.85] tracking-tight text-white mix-blend-difference">
             {overlayText}
           </h1>
-          <div className="mt-8 hidden gap-4 justify-center md:flex">
+          <div className="mt-8 hidden gap-4 justify-center md:flex pointer-events-auto">
             <Link href="/shop">
               <InteractiveHoverButton text="SHOP" />
             </Link>
