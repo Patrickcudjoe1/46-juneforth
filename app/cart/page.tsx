@@ -22,9 +22,9 @@ export default function CartPage() {
           </div>
           <Link
             href="/shop"
-            className="rounded-full border border-foreground/30 px-4 py-2 text-sm font-medium tracking-[0.18em] text-foreground transition hover:bg-foreground hover:text-background"
+            className="rounded-full border border-foreground/30 px-3 py-1.5 md:px-4 md:py-2 text-[10px] md:text-sm font-medium tracking-[0.1em] md:tracking-[0.18em] text-foreground transition hover:bg-foreground hover:text-background text-center uppercase"
           >
-            To Shopping
+            Continue Shopping
           </Link>
         </header>
 
