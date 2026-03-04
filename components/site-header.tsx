@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 
 import Link from "next/link";
-import { User, ShoppingCart, Home } from "lucide-react";
+import { User, ShoppingCart, Home, ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ThemeToggle } from "./theme-toggle";
 import { useCart } from "@/components/cart-provider";
 
@@ -26,6 +27,9 @@ export interface SiteHeaderProps {
 export const SiteHeader = ({ leftAction, hideThemeToggle }: SiteHeaderProps) => {
     const { totalItems } = useCart();
     const [mounted, setMounted] = useState(false);
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
+    const categories = ["NEW", "MENS", "WOMENS", "SLIDES", "ACCESSORIES"];
+    const [activeCategory, setActiveCategory] = useState("NEW");
 
     useEffect(() => {
         setMounted(true);
@@ -41,13 +45,42 @@ export const SiteHeader = ({ leftAction, hideThemeToggle }: SiteHeaderProps) => 
                 )}
             </div>
 
-            <nav className="flex flex-1 items-center gap-5 md:gap-8 overflow-x-auto whitespace-nowrap [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] text-xs md:text-sm font-mono tracking-widest text-foreground/70 mx-4 justify-start md:justify-center pb-0">
-                <Link href="/" className="font-bold text-foreground transition-colors uppercase">NEW</Link>
-                <Link href="/" className="hover:text-foreground transition-colors uppercase">MENS</Link>
-                <Link href="/" className="hover:text-foreground transition-colors uppercase">WOMENS</Link>
-                <Link href="/" className="hover:text-foreground transition-colors uppercase">SLIDES</Link>
-                <Link href="/" className="hover:text-foreground transition-colors uppercase">ACCESSORIES</Link>
-            </nav>
+            <div className="relative flex flex-1 justify-center z-50">
+                <button
+                    onClick={() => setIsFilterOpen(!isFilterOpen)}
+                    className="flex items-center gap-2 text-xs md:text-sm font-mono tracking-widest font-bold text-foreground hover:opacity-70 transition-opacity uppercase"
+                >
+                    {activeCategory} <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${isFilterOpen ? "rotate-180" : ""}`} />
+                </button>
+
+                <AnimatePresence>
+                    {isFilterOpen && (
+                        <motion.div
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            transition={{ duration: 0.2 }}
+                            className="absolute top-full mt-6 flex flex-col w-48 bg-background border border-foreground/20 shadow-lg rounded-none overflow-hidden"
+                        >
+                            {categories.map((cat) => (
+                                <button
+                                    key={cat}
+                                    onClick={() => {
+                                        setActiveCategory(cat);
+                                        setIsFilterOpen(false);
+                                    }}
+                                    className={`text-left px-6 py-4 text-xs font-mono tracking-widest uppercase transition-colors ${activeCategory === cat
+                                            ? "bg-foreground text-background font-bold"
+                                            : "hover:bg-foreground/5 text-foreground/70 hover:text-foreground"
+                                        }`}
+                                >
+                                    {cat}
+                                </button>
+                            ))}
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </div>
 
             <div className="flex items-center gap-6">
                 {!hideThemeToggle && <ThemeToggle />}
