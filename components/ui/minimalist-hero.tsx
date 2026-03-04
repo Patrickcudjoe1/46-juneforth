@@ -77,7 +77,7 @@ export const MinimalistHero = ({
               ease: [0.22, 1, 0.36, 1],
               delay: 0.2,
             }}
-            className="absolute z-0 h-[300px] w-[300px] rounded-full bg-yellow-400/90 md:h-[400px] md:w-[400px] lg:h-[500px] lg:w-[500px]"
+            className="absolute z-0 h-[300px] w-[300px] rounded-full bg-blue-600/90 md:h-[400px] md:w-[400px] lg:h-[500px] lg:w-[500px]"
           />
           <motion.img
             src={imageSrc}
