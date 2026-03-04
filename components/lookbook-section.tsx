@@ -69,8 +69,8 @@ export function LookbookSection({ items = defaultItems }: LookbookSectionProps) 
             {/* Hero Video */}
             <div className="relative h-screen w-full overflow-hidden bg-black/5">
                 <video
-                    key="/VID-2.webm"
-                    src="/VID-2.webm"
+                    key="/VID-1.webm"
+                    src="/VID-1.webm"
                     autoPlay
                     loop
                     muted
@@ -80,8 +80,14 @@ export function LookbookSection({ items = defaultItems }: LookbookSectionProps) 
                     suppressHydrationWarning
                     className="absolute inset-0 h-full w-full object-cover pt-[73px]"
                 />
-                <div className="absolute inset-0 bg-black/20 mt-[73px] flex items-center justify-center pointer-events-none">
-                    <Link href="/shop" className="mt-16 pointer-events-auto">
+                <div className="absolute inset-0 mt-[73px] flex flex-col items-center justify-center pointer-events-none text-center px-6">
+                    <h1 className="max-w-full text-[clamp(3rem,8vw,10rem)] font-extrabold leading-[0.85] tracking-tight text-white mix-blend-difference drop-shadow-sm uppercase">
+                        VISUAL ARCHIVE
+                    </h1>
+                    <p className="mt-6 max-w-md text-sm md:text-base leading-relaxed text-white/90 mix-blend-difference">
+                        Where streetwear becomes art. Every piece tells a story.
+                    </p>
+                    <Link href="/shop" className="mt-12 pointer-events-auto">
                         <InteractiveHoverButton text="SHOP" />
                     </Link>
                 </div>
