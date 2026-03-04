@@ -9,7 +9,10 @@ export default function AuthPage() {
 
   return (
     <div className="relative min-h-screen bg-background text-foreground font-sans selection:bg-foreground selection:text-background">
-      <TransparentHeader absolute={true} />
+      <TransparentHeader
+        absolute={true}
+        hideElements={["auth"]}
+      />
 
       <main className="flex min-h-screen flex-col items-center justify-center p-6 md:p-12">
         <div className="w-full max-w-md pt-24">

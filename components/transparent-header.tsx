@@ -55,6 +55,7 @@ export interface TransparentHeaderProps {
     absolute?: boolean;
     hideThemeToggle?: boolean;
     forceLightMode?: boolean;
+    hideElements?: ("home" | "search" | "cart" | "auth")[];
 }
 
 export const TransparentHeader = ({
@@ -63,6 +64,7 @@ export const TransparentHeader = ({
     absolute = true,
     hideThemeToggle = false,
     forceLightMode = false,
+    hideElements = [],
 }: TransparentHeaderProps) => {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
@@ -87,74 +89,86 @@ export const TransparentHeader = ({
                 </motion.div>
 
                 <div className="hidden items-center gap-4 md:flex">
-                    <nav className="flex items-center gap-3">
+                    {!hideElements.includes("home") && (
+                        <nav className="flex items-center gap-3">
+                            <Link
+                                href="/"
+                                className={cn(
+                                    "inline-flex h-9 w-9 items-center justify-center rounded-full border shadow-sm transition",
+                                    forceLightMode ? "border-black/30 bg-white/80 text-black hover:bg-black hover:text-white" : "border-foreground/30 bg-background/80 text-foreground hover:bg-foreground hover:text-background"
+                                )}
+                                aria-label="Home"
+                            >
+                                <Home className="h-4 w-4" />
+                            </Link>
+                        </nav>
+                    )}
+
+                    {/* Desktop Search Button */}
+                    {!hideElements.includes("search") && (
+                        <button
+                            onClick={() => setSearchOpen(true)}
+                            className={cn(
+                                "inline-flex h-9 w-9 items-center justify-center rounded-full border shadow-sm transition relative",
+                                forceLightMode ? "border-black/30 bg-white/80 text-black hover:bg-black hover:text-white" : "border-foreground/30 bg-background/80 text-foreground hover:bg-foreground hover:text-background"
+                            )}
+                            aria-label="Search"
+                        >
+                            <Search className="h-4 w-4" />
+                        </button>
+                    )}
+
+                    {!hideElements.includes("cart") && (
                         <Link
-                            href="/"
+                            href="/cart"
+                            className={cn(
+                                "inline-flex h-9 w-9 items-center justify-center rounded-full border shadow-sm transition relative",
+                                forceLightMode ? "border-black/30 bg-white/80 text-black hover:bg-black hover:text-white" : "border-foreground/30 bg-background/80 text-foreground hover:bg-foreground hover:text-background"
+                            )}
+                            aria-label="Cart"
+                        >
+                            <ShoppingCart className="h-4 w-4" />
+                            {mounted && totalItems > 0 && (
+                                <span className={cn(
+                                    "absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full text-[9px] font-bold",
+                                    forceLightMode ? "bg-black text-white" : "bg-foreground text-background"
+                                )}>
+                                    {totalItems}
+                                </span>
+                            )}
+                        </Link>
+                    )}
+
+                    {!hideElements.includes("auth") && (
+                        <Link
+                            href="/auth"
                             className={cn(
                                 "inline-flex h-9 w-9 items-center justify-center rounded-full border shadow-sm transition",
                                 forceLightMode ? "border-black/30 bg-white/80 text-black hover:bg-black hover:text-white" : "border-foreground/30 bg-background/80 text-foreground hover:bg-foreground hover:text-background"
                             )}
-                            aria-label="Home"
+                            aria-label="Account"
                         >
-                            <Home className="h-4 w-4" />
+                            <User className="h-4 w-4" />
                         </Link>
-                    </nav>
+                    )}
 
-                    {/* Desktop Search Button */}
-                    <button
-                        onClick={() => setSearchOpen(true)}
-                        className={cn(
-                            "inline-flex h-9 w-9 items-center justify-center rounded-full border shadow-sm transition relative",
-                            forceLightMode ? "border-black/30 bg-white/80 text-black hover:bg-black hover:text-white" : "border-foreground/30 bg-background/80 text-foreground hover:bg-foreground hover:text-background"
-                        )}
-                        aria-label="Search"
-                    >
-                        <Search className="h-4 w-4" />
-                    </button>
-
-                    <Link
-                        href="/cart"
-                        className={cn(
-                            "inline-flex h-9 w-9 items-center justify-center rounded-full border shadow-sm transition relative",
-                            forceLightMode ? "border-black/30 bg-white/80 text-black hover:bg-black hover:text-white" : "border-foreground/30 bg-background/80 text-foreground hover:bg-foreground hover:text-background"
-                        )}
-                        aria-label="Cart"
-                    >
-                        <ShoppingCart className="h-4 w-4" />
-                        {mounted && totalItems > 0 && (
-                            <span className={cn(
-                                "absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full text-[9px] font-bold",
-                                forceLightMode ? "bg-black text-white" : "bg-foreground text-background"
-                            )}>
-                                {totalItems}
-                            </span>
-                        )}
-                    </Link>
-                    <Link
-                        href="/auth"
-                        className={cn(
-                            "inline-flex h-9 w-9 items-center justify-center rounded-full border shadow-sm transition",
-                            forceLightMode ? "border-black/30 bg-white/80 text-black hover:bg-black hover:text-white" : "border-foreground/30 bg-background/80 text-foreground hover:bg-foreground hover:text-background"
-                        )}
-                        aria-label="Account"
-                    >
-                        <User className="h-4 w-4" />
-                    </Link>
                     {!hideThemeToggle && <ThemeToggle />}
                 </div>
 
                 <div className="flex items-center gap-3 md:hidden">
                     {/* Mobile Search Button */}
-                    <button
-                        onClick={() => setSearchOpen(true)}
-                        className={cn(
-                            "inline-flex h-9 w-9 items-center justify-center rounded-full border shadow-sm transition relative",
-                            forceLightMode ? "border-black/30 bg-white/80 text-black hover:bg-black hover:text-white" : "border-foreground/30 bg-background/80 text-foreground hover:bg-foreground hover:text-background"
-                        )}
-                        aria-label="Search"
-                    >
-                        <Search className="h-4 w-4" />
-                    </button>
+                    {!hideElements.includes("search") && (
+                        <button
+                            onClick={() => setSearchOpen(true)}
+                            className={cn(
+                                "inline-flex h-9 w-9 items-center justify-center rounded-full border shadow-sm transition relative",
+                                forceLightMode ? "border-black/30 bg-white/80 text-black hover:bg-black hover:text-white" : "border-foreground/30 bg-background/80 text-foreground hover:bg-foreground hover:text-background"
+                            )}
+                            aria-label="Search"
+                        >
+                            <Search className="h-4 w-4" />
+                        </button>
+                    )}
 
                     <motion.button
                         initial={{ opacity: 0, x: 20 }}
@@ -227,56 +241,62 @@ export const TransparentHeader = ({
                         transition={{ duration: 0.2 }}
                         className={cn("relative z-30 mt-4 w-full max-w-7xl rounded-2xl border p-4 shadow-sm md:hidden", forceLightMode ? "bg-white/95 border-black/10 text-black" : "bg-background/95 border-foreground/10")}
                     >
-                        <nav className="flex items-center justify-between">
-                            <span className={cn("text-xs uppercase tracking-[0.2em]", forceLightMode ? "text-black/80" : "text-foreground/80")}>
-                                HOME
-                            </span>
-                            <div className="flex items-center gap-3">
+                        {!hideElements.includes("home") && (
+                            <nav className="flex items-center justify-between">
+                                <span className={cn("text-xs uppercase tracking-[0.2em]", forceLightMode ? "text-black/80" : "text-foreground/80")}>
+                                    HOME
+                                </span>
+                                <div className="flex items-center gap-3">
+                                    <Link
+                                        href="/"
+                                        onClick={() => setMobileOpen(false)}
+                                        className={cn(
+                                            "inline-flex h-9 w-9 items-center justify-center rounded-full border shadow-sm transition",
+                                            forceLightMode ? "border-black/30 bg-white/80 text-black hover:bg-black hover:text-white" : "border-foreground/30 bg-background/80 text-foreground hover:bg-foreground hover:text-background"
+                                        )}
+                                        aria-label="Home"
+                                    >
+                                        <Home className="h-4 w-4" />
+                                    </Link>
+                                </div>
+                            </nav>
+                        )}
+                        {!hideElements.includes("cart") && (
+                            <div className="mt-4 flex items-center justify-between">
+                                <span className={cn("text-xs uppercase tracking-[0.2em]", forceLightMode ? "text-black/80" : "text-foreground/80")}>
+                                    Cart ({mounted ? totalItems : 0})
+                                </span>
                                 <Link
-                                    href="/"
-                                    onClick={() => setMobileOpen(false)}
+                                    href="/cart"
                                     className={cn(
                                         "inline-flex h-9 w-9 items-center justify-center rounded-full border shadow-sm transition",
                                         forceLightMode ? "border-black/30 bg-white/80 text-black hover:bg-black hover:text-white" : "border-foreground/30 bg-background/80 text-foreground hover:bg-foreground hover:text-background"
                                     )}
-                                    aria-label="Home"
+                                    aria-label="Cart"
+                                    onClick={() => setMobileOpen(false)}
                                 >
-                                    <Home className="h-4 w-4" />
+                                    <ShoppingCart className="h-4 w-4" />
                                 </Link>
                             </div>
-                        </nav>
-                        <div className="mt-4 flex items-center justify-between">
-                            <span className={cn("text-xs uppercase tracking-[0.2em]", forceLightMode ? "text-black/80" : "text-foreground/80")}>
-                                Cart ({mounted ? totalItems : 0})
-                            </span>
-                            <Link
-                                href="/cart"
-                                className={cn(
-                                    "inline-flex h-9 w-9 items-center justify-center rounded-full border shadow-sm transition",
-                                    forceLightMode ? "border-black/30 bg-white/80 text-black hover:bg-black hover:text-white" : "border-foreground/30 bg-background/80 text-foreground hover:bg-foreground hover:text-background"
-                                )}
-                                aria-label="Cart"
-                                onClick={() => setMobileOpen(false)}
-                            >
-                                <ShoppingCart className="h-4 w-4" />
-                            </Link>
-                        </div>
-                        <div className="mt-4 flex items-center justify-between">
-                            <span className={cn("text-xs uppercase tracking-[0.2em]", forceLightMode ? "text-black/80" : "text-foreground/80")}>
-                                Account
-                            </span>
-                            <Link
-                                href="/auth"
-                                className={cn(
-                                    "inline-flex h-9 w-9 items-center justify-center rounded-full border shadow-sm transition",
-                                    forceLightMode ? "border-black/30 bg-white/80 text-black hover:bg-black hover:text-white" : "border-foreground/30 bg-background/80 text-foreground hover:bg-foreground hover:text-background"
-                                )}
-                                aria-label="Account"
-                                onClick={() => setMobileOpen(false)}
-                            >
-                                <User className="h-4 w-4" />
-                            </Link>
-                        </div>
+                        )}
+                        {!hideElements.includes("auth") && (
+                            <div className="mt-4 flex items-center justify-between">
+                                <span className={cn("text-xs uppercase tracking-[0.2em]", forceLightMode ? "text-black/80" : "text-foreground/80")}>
+                                    Account
+                                </span>
+                                <Link
+                                    href="/auth"
+                                    className={cn(
+                                        "inline-flex h-9 w-9 items-center justify-center rounded-full border shadow-sm transition",
+                                        forceLightMode ? "border-black/30 bg-white/80 text-black hover:bg-black hover:text-white" : "border-foreground/30 bg-background/80 text-foreground hover:bg-foreground hover:text-background"
+                                    )}
+                                    aria-label="Account"
+                                    onClick={() => setMobileOpen(false)}
+                                >
+                                    <User className="h-4 w-4" />
+                                </Link>
+                            </div>
+                        )}
                         {!hideThemeToggle && (
                             <div className="mt-4 flex items-center justify-between">
                                 <span className="text-xs uppercase tracking-[0.2em] text-foreground/80">
