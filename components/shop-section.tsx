@@ -129,9 +129,78 @@ const products: Product[] = [
         name: "CB-01",
         price: "$120",
         image: "/images/look_12_new_1772586550894.png",
-        images: [
-            "/images/look_12_new_1772586550894.png",
-        ],
+    },
+    {
+        id: "13",
+        name: "SN-02",
+        price: "$110",
+        image: "/images/look_7_new_1772586448482.png",
+    },
+    {
+        id: "14",
+        name: "BP-02",
+        price: "$140",
+        image: "/images/look_8_new_1772586466007.png",
+    },
+    {
+        id: "15",
+        name: "KN-02",
+        price: "$40",
+        image: "/images/look_9_new_1772586482070.png",
+    },
+    {
+        id: "16",
+        name: "SL-03",
+        price: "$60",
+        image: "/images/look_10_new_1772586516143.png",
+    },
+    {
+        id: "17",
+        name: "TS-02",
+        price: "$35",
+        image: "/images/look_11_new_1772586534268.png",
+    },
+    {
+        id: "18",
+        name: "CB-02",
+        price: "$120",
+        image: "/images/look_12_new_1772586550894.png",
+    },
+    {
+        id: "19",
+        name: "SN-03",
+        price: "$110",
+        image: "/images/look_7_new_1772586448482.png",
+    },
+    {
+        id: "20",
+        name: "BP-03",
+        price: "$140",
+        image: "/images/look_8_new_1772586466007.png",
+    },
+    {
+        id: "21",
+        name: "KN-03",
+        price: "$40",
+        image: "/images/look_9_new_1772586482070.png",
+    },
+    {
+        id: "22",
+        name: "SL-04",
+        price: "$60",
+        image: "/images/look_10_new_1772586516143.png",
+    },
+    {
+        id: "23",
+        name: "TS-03",
+        price: "$35",
+        image: "/images/look_11_new_1772586534268.png",
+    },
+    {
+        id: "24",
+        name: "CB-03",
+        price: "$120",
+        image: "/images/look_12_new_1772586550894.png",
     },
 ];
 
