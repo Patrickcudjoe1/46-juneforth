@@ -14,6 +14,7 @@ export default function CartPage() {
       <TransparentHeader
         absolute={true}
         forceLightMode={true}
+        disableThemeToggle={true}
         hideElements={["cart"]}
       />
       <div className="mx-auto w-full max-w-5xl px-6 pb-10 md:px-10 pt-40">

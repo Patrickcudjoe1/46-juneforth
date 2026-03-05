@@ -62,7 +62,7 @@ export function LookbookSection({ items = defaultItems }: LookbookSectionProps) 
         <div className="bg-white text-black min-h-screen relative">
             <TransparentHeader
                 absolute={true}
-                hideThemeToggle={true}
+                disableThemeToggle={true}
                 forceLightMode={true}
             />
 

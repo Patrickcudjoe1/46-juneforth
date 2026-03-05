@@ -21,10 +21,10 @@ const NavLink = ({ href, children }: { href: string; children: React.ReactNode }
 
 export interface SiteHeaderProps {
     leftAction?: React.ReactNode;
-    hideThemeToggle?: boolean;
+    disableThemeToggle?: boolean;
 }
 
-export const SiteHeader = ({ leftAction, hideThemeToggle = false }: SiteHeaderProps) => {
+export const SiteHeader = ({ leftAction, disableThemeToggle = false }: SiteHeaderProps) => {
     const { totalItems } = useCart();
     const [mounted, setMounted] = useState(false);
     const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -83,7 +83,7 @@ export const SiteHeader = ({ leftAction, hideThemeToggle = false }: SiteHeaderPr
             </div>
 
             <div className="flex items-center gap-6 pointer-events-auto">
-                {!hideThemeToggle && <ThemeToggle />}
+                {!disableThemeToggle && <ThemeToggle />}
                 <Link
                     href="/"
                     className="flex items-center justify-center hover:opacity-70 transition-opacity text-foreground"

@@ -64,7 +64,7 @@ export function ShopSection() {
     if (selectedProduct) {
         return (
             <div className="min-h-screen bg-white text-black font-sans">
-                <TransparentHeader forceLightMode={true} hideThemeToggle={true} />
+                <TransparentHeader forceLightMode={true} disableThemeToggle={true} />
 
                 {/* Back Button */}
                 <button
@@ -188,7 +188,7 @@ export function ShopSection() {
 
     return (
         <div className="min-h-screen bg-white text-black font-sans transition-colors duration-500">
-            <TransparentHeader forceLightMode={true} hideThemeToggle={true} />
+            <TransparentHeader forceLightMode={true} disableThemeToggle={true} />
 
             {/* Main Content */}
             <main className="pt-[73px]">

@@ -15,7 +15,7 @@ export interface TransparentHeaderProps {
     className?: string;
     absolute?: boolean;
     forceLightMode?: boolean;
-    hideThemeToggle?: boolean;
+    disableThemeToggle?: boolean;
     hideElements?: ("home" | "search" | "cart" | "auth")[];
 }
 
@@ -24,7 +24,7 @@ export const TransparentHeader = ({
     className,
     absolute = true,
     forceLightMode = false,
-    hideThemeToggle = false,
+    disableThemeToggle = false,
     hideElements = [],
 }: TransparentHeaderProps) => {
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -67,7 +67,7 @@ export const TransparentHeader = ({
 
                 {/* Desktop Right Nav (Text based) */}
                 <div className={cn("hidden lg:flex flex-1 items-center justify-end gap-8 text-[11px] font-mono tracking-widest font-bold uppercase", forceLightMode ? "text-black" : "text-foreground")}>
-                    {!hideThemeToggle && <ThemeToggle />}
+                    {!disableThemeToggle && <ThemeToggle />}
                     {!hideElements.includes("search") && (
                         <button
                             onClick={() => setSearchOpen(true)}
@@ -96,7 +96,7 @@ export const TransparentHeader = ({
 
                 {/* Mobile Right Icons */}
                 <div className={cn("flex flex-1 items-center justify-end gap-5 lg:hidden", forceLightMode ? "text-black" : "text-foreground")}>
-                    {!hideThemeToggle && <ThemeToggle />}
+                    {!disableThemeToggle && <ThemeToggle />}
                     {/* Mobile Search Button */}
                     {!hideElements.includes("search") && (
                         <button

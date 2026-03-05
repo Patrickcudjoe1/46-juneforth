@@ -33,7 +33,7 @@ export const MinimalistHero = ({
   return (
     <div className="w-full flex flex-col min-h-screen bg-white">
       {/* Global Solid Header positioned in normal flow */}
-      <TransparentHeader logoText={logoText} absolute={false} forceLightMode={true} hideThemeToggle={true} />
+      <TransparentHeader logoText={logoText} absolute={false} forceLightMode={true} disableThemeToggle={true} />
 
       {/* Hero Image Section */}
       <div
