@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Moon, ShoppingBag, Sun, User, Search, X, Home } from "lucide-react";
 import { useCart } from "@/components/cart-provider";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 
 
@@ -14,6 +15,7 @@ export interface TransparentHeaderProps {
     className?: string;
     absolute?: boolean;
     forceLightMode?: boolean;
+    hideThemeToggle?: boolean;
     hideElements?: ("home" | "search" | "cart" | "auth")[];
 }
 
@@ -22,6 +24,7 @@ export const TransparentHeader = ({
     className,
     absolute = true,
     forceLightMode = false,
+    hideThemeToggle = false,
     hideElements = [],
 }: TransparentHeaderProps) => {
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -34,12 +37,24 @@ export const TransparentHeader = ({
     }, []);
 
     return (
-        <div className={cn("w-full z-[100] flex flex-col items-center", absolute ? "absolute top-8 left-0 right-0 px-8 md:px-12" : "px-6 py-8 md:px-12", forceLightMode ? "text-black [&_*]:border-black" : "text-foreground", className)}>
+        <div className={cn("w-full z-[100] flex flex-col items-center bg-background text-foreground transition-colors duration-300", absolute ? "absolute top-0 left-0 right-0 px-6 py-4 md:px-12 border-t-[6px] border-foreground" : "px-6 py-4 md:px-12 border-t-[6px] border-foreground", forceLightMode ? "bg-white text-black border-black" : "", className)}>
             <header className="flex w-full max-w-7xl items-center justify-between">
+
+                {/* Desktop Left Nav */}
+                <div className={cn("hidden lg:flex flex-1 items-center justify-start gap-8 text-[11px] font-mono tracking-widest font-bold uppercase", forceLightMode ? "text-black" : "text-foreground")}>
+                    <Link href="/shop" className="hover:opacity-60 transition-opacity">FEATURED</Link>
+                    <Link href="/shop" className="hover:opacity-60 transition-opacity">COLLECTIONS</Link>
+                    <Link href="/shop" className="hover:opacity-60 transition-opacity">MENS</Link>
+                    <Link href="/shop" className="hover:opacity-60 transition-opacity">WOMENS</Link>
+                    <Link href="/shop" className="hover:opacity-60 transition-opacity">KIDS</Link>
+                </div>
+
+                {/* Center Logo */}
                 <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5 }}
+                    className="flex flex-1 justify-center lg:justify-center justify-start"
                 >
                     <Link href="/" className="flex items-center">
                         <img
@@ -50,60 +65,38 @@ export const TransparentHeader = ({
                     </Link>
                 </motion.div>
 
-                <div className={cn("hidden items-center gap-6 md:flex", forceLightMode ? "" : "text-white mix-blend-difference")}>
-                    {!hideElements.includes("home") && (
-                        <nav className="flex items-center gap-3">
-                            <Link
-                                href="/"
-                                className="hover:opacity-70 transition-opacity"
-                                aria-label="Home"
-                            >
-                                <Home className="h-5 w-5" strokeWidth={1.5} />
-                            </Link>
-                        </nav>
-                    )}
-
-                    {/* Desktop Search Button */}
+                {/* Desktop Right Nav (Text based) */}
+                <div className={cn("hidden lg:flex flex-1 items-center justify-end gap-8 text-[11px] font-mono tracking-widest font-bold uppercase", forceLightMode ? "text-black" : "text-foreground")}>
+                    {!hideThemeToggle && <ThemeToggle />}
                     {!hideElements.includes("search") && (
                         <button
                             onClick={() => setSearchOpen(true)}
-                            className="hover:opacity-70 transition-opacity"
-                            aria-label="Search"
+                            className="hover:opacity-60 transition-opacity uppercase"
                         >
-                            <Search className="h-5 w-5" strokeWidth={1.5} />
+                            SEARCH
                         </button>
                     )}
-
                     {!hideElements.includes("auth") && (
                         <Link
                             href="/auth"
-                            className="hover:opacity-70 transition-opacity"
-                            aria-label="Account"
+                            className="hover:opacity-60 transition-opacity uppercase"
                         >
-                            <User className="h-5 w-5" strokeWidth={1.5} />
+                            ACCOUNT
                         </Link>
                     )}
-
                     {!hideElements.includes("cart") && (
                         <Link
                             href="/cart"
-                            className="hover:opacity-70 transition-opacity relative"
-                            aria-label="Cart"
+                            className="hover:opacity-60 transition-opacity uppercase"
                         >
-                            <ShoppingBag className="h-5 w-5" strokeWidth={1.5} />
-                            {mounted && totalItems > 0 && (
-                                <span className={cn(
-                                    "absolute -top-1.5 -right-1.5 flex h-4 w-4 items-center justify-center rounded-full text-[9px] font-bold",
-                                    forceLightMode ? "bg-black text-white" : "bg-foreground text-background"
-                                )}>
-                                    {totalItems}
-                                </span>
-                            )}
+                            BAG {mounted && totalItems > 0 ? `(${totalItems})` : ""}
                         </Link>
                     )}
                 </div>
 
-                <div className={cn("flex items-center gap-5 md:hidden", forceLightMode ? "" : "text-white mix-blend-difference")}>
+                {/* Mobile Right Icons */}
+                <div className={cn("flex flex-1 items-center justify-end gap-5 lg:hidden", forceLightMode ? "text-black" : "text-foreground")}>
+                    {!hideThemeToggle && <ThemeToggle />}
                     {/* Mobile Search Button */}
                     {!hideElements.includes("search") && (
                         <button
@@ -111,7 +104,7 @@ export const TransparentHeader = ({
                             className="hover:opacity-70 transition-opacity"
                             aria-label="Search"
                         >
-                            <Search className="h-6 w-6" strokeWidth={1.5} />
+                            <Search className="h-5 w-5 md:h-6 md:w-6" strokeWidth={1.5} />
                         </button>
                     )}
 
@@ -122,7 +115,7 @@ export const TransparentHeader = ({
                             className="hover:opacity-70 transition-opacity"
                             aria-label="Account"
                         >
-                            <User className="h-6 w-6" strokeWidth={1.5} />
+                            <User className="h-5 w-5 md:h-6 md:w-6" strokeWidth={1.5} />
                         </Link>
                     )}
 
@@ -133,7 +126,7 @@ export const TransparentHeader = ({
                             className="hover:opacity-70 transition-opacity relative"
                             aria-label="Cart"
                         >
-                            <ShoppingBag className="h-6 w-6" strokeWidth={1.5} />
+                            <ShoppingBag className="h-5 w-5 md:h-6 md:w-6" strokeWidth={1.5} />
                             {mounted && totalItems > 0 && (
                                 <span className={cn(
                                     "absolute -top-1.5 -right-1.5 flex h-4 w-4 items-center justify-center rounded-full text-[9px] font-bold",
@@ -215,20 +208,16 @@ export const TransparentHeader = ({
                         className={cn("relative z-30 mt-4 w-full max-w-7xl rounded-2xl border p-4 shadow-sm md:hidden", forceLightMode ? "bg-white/95 border-black/10 text-black" : "bg-background/95 border-foreground/10")}
                     >
                         {!hideElements.includes("home") && (
-                            <nav className="flex items-center justify-between">
-                                <span className={cn("text-xs uppercase tracking-[0.2em]", forceLightMode ? "text-black/80" : "text-foreground/80")}>
-                                    HOME
-                                </span>
-                                <div className="flex items-center gap-3">
-                                    <Link
-                                        href="/"
-                                        onClick={() => setMobileOpen(false)}
-                                        className="hover:opacity-70 transition-opacity"
-                                        aria-label="Home"
-                                    >
-                                        <Home className="h-5 w-5" strokeWidth={1.5} />
-                                    </Link>
-                                </div>
+                            <nav className="flex flex-col gap-6 font-mono tracking-widest text-sm font-bold uppercase">
+                                <Link
+                                    href="/"
+                                    onClick={() => setMobileOpen(false)}
+                                    className="flex items-center justify-between hover:opacity-70 transition-opacity py-2 border-b border-foreground/10"
+                                >
+                                    <span>HOME</span>
+                                    <Home className="h-4 w-4" strokeWidth={1.5} />
+                                </Link>
+                                {/* Additional links removed per user request */}
                             </nav>
                         )}
                     </motion.div>

@@ -13,7 +13,6 @@ export default function CheckoutPage() {
         <main className="min-h-screen bg-white text-black font-mono relative">
             <TransparentHeader
                 absolute={true}
-                hideThemeToggle={true}
                 forceLightMode={true}
                 hideElements={["cart"]}
             />

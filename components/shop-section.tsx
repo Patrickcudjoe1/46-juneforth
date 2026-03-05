@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { SiteHeader } from "@/components/site-header";
+import { TransparentHeader } from "@/components/transparent-header";
 import { ArrowLeft } from "lucide-react";
 import { useCart } from "@/components/cart-provider";
 
@@ -35,8 +35,8 @@ export function ShopSection() {
         if (selectedProduct) {
             const hasSizes = selectedProduct.sizes && selectedProduct.sizes.length > 0;
             if (hasSizes && !selectedSize) return;
-            
-            addItem(selectedProduct, hasSizes ? selectedSize : "OS");
+
+            addItem(selectedProduct, selectedSize || "OS");
             handleClose();
         }
     };
@@ -72,11 +72,8 @@ export function ShopSection() {
 
     if (selectedProduct) {
         return (
-            <div
-                className="min-h-screen bg-background text-foreground"
-                style={{ "--background": "#ffffff", "--foreground": "#171717" } as React.CSSProperties}
-            >
-                <SiteHeader leftAction={leftAction} hideThemeToggle />
+            <div className="min-h-screen bg-background text-foreground">
+                <TransparentHeader />
 
                 {/* Back Button */}
                 <button
@@ -199,14 +196,14 @@ export function ShopSection() {
 
 
     return (
-        <div
-            className="min-h-screen bg-background text-foreground transition-colors duration-500"
-            style={{ "--background": "#ffffff", "--foreground": "#171717", "--border": "#e5e5e5" } as React.CSSProperties}
-        >
-            <SiteHeader leftAction={leftAction} hideThemeToggle />
+        <div className="min-h-screen bg-background text-foreground transition-colors duration-500">
+            <TransparentHeader />
 
             {/* Main Content */}
             <main className="pt-[73px]">
+                <div className="px-6 md:px-12 flex items-center pt-6 pb-2">
+                    {leftAction}
+                </div>
 
                 {/* Product Grid */}
                 <div className={`grid auto-rows-min gap-x-4 gap-y-12 sm:gap-x-8 sm:gap-y-16 px-6 md:px-12 py-12 transition-all duration-700 ease-in-out ${viewMode === "focus"
@@ -245,6 +242,6 @@ export function ShopSection() {
                     </AnimatePresence>
                 </div>
             </main>
-        </div>
+        </div >
     );
 }

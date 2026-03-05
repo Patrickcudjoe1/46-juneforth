@@ -6,6 +6,7 @@ import Link from "next/link";
 import { User, ShoppingBag, Home, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "@/components/cart-provider";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => {
     return (
@@ -20,9 +21,10 @@ const NavLink = ({ href, children }: { href: string; children: React.ReactNode }
 
 export interface SiteHeaderProps {
     leftAction?: React.ReactNode;
+    hideThemeToggle?: boolean;
 }
 
-export const SiteHeader = ({ leftAction }: SiteHeaderProps) => {
+export const SiteHeader = ({ leftAction, hideThemeToggle = false }: SiteHeaderProps) => {
     const { totalItems } = useCart();
     const [mounted, setMounted] = useState(false);
     const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -81,6 +83,7 @@ export const SiteHeader = ({ leftAction }: SiteHeaderProps) => {
             </div>
 
             <div className="flex items-center gap-6 pointer-events-auto">
+                {!hideThemeToggle && <ThemeToggle />}
                 <Link
                     href="/"
                     className="flex items-center justify-center hover:opacity-70 transition-opacity text-foreground"
