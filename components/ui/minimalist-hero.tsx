@@ -9,7 +9,6 @@ import { TransparentHeader } from "@/components/transparent-header";
 
 interface MinimalistHeroProps {
   logoText: string;
-  mainText: string;
   imageSrc?: string;
   videoSrc?: string;
   imageAlt?: string;
@@ -22,7 +21,6 @@ interface MinimalistHeroProps {
 
 export const MinimalistHero = ({
   logoText,
-  mainText,
   imageSrc,
   videoSrc,
   imageAlt,
@@ -35,9 +33,13 @@ export const MinimalistHero = ({
   return (
     <div
       className={cn(
-        "relative flex h-screen w-full flex-col items-center justify-between overflow-hidden bg-background p-8 font-sans md:p-12",
+        "relative flex h-screen w-full flex-col items-center justify-between overflow-hidden bg-background p-8 font-sans md:p-12 dark",
         className
       )}
+      style={{
+        "--background": "0 0% 10%",
+        "--foreground": "0 0% 98%"
+      } as React.CSSProperties}
     >
       {/* Fullscreen Image Background */}
       {imageSrc && (
@@ -56,15 +58,6 @@ export const MinimalistHero = ({
         <TransparentHeader logoText={logoText} absolute={false} className="w-full !px-0 pt-0" />
 
         <div className="flex w-full flex-grow flex-col items-center justify-center gap-8 text-center pb-20 mt-16 md:mt-24">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1 }}
-          >
-            <p className="mx-auto max-w-xs text-sm leading-relaxed text-white/80 mix-blend-difference hidden md:block">
-              {mainText}
-            </p>
-          </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -77,10 +70,10 @@ export const MinimalistHero = ({
             </h1>
             <div className="mt-12 hidden gap-6 justify-center md:flex pointer-events-auto">
               <Link href="/shop">
-                <InteractiveHoverButton text="SHOP" />
+                <InteractiveHoverButton text="SHOP" forceDark />
               </Link>
               <Link href="/lookbook">
-                <InteractiveHoverButton text="LOOK BOOK" />
+                <InteractiveHoverButton text="LOOK BOOK" forceDark />
               </Link>
             </div>
           </motion.div>
@@ -92,10 +85,10 @@ export const MinimalistHero = ({
             className="mt-8 flex w-full flex-row justify-center items-center gap-4 md:hidden pointer-events-auto"
           >
             <Link href="/shop">
-              <InteractiveHoverButton text="SHOP" />
+              <InteractiveHoverButton text="SHOP" forceDark />
             </Link>
             <Link href="/lookbook">
-              <InteractiveHoverButton text="LOOK BOOK" />
+              <InteractiveHoverButton text="LOOK BOOK" forceDark />
             </Link>
           </motion.div>
         </div>

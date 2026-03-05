@@ -84,7 +84,7 @@ export function LookbookSection({ items = defaultItems }: LookbookSectionProps) 
                     <h1 className="max-w-full text-[clamp(3rem,8vw,10rem)] font-extrabold leading-[0.85] tracking-tight text-white mix-blend-difference drop-shadow-sm uppercase">
                         VISUAL ARCHIVE
                     </h1>
-                    <p className="mt-6 max-w-md text-sm md:text-base leading-relaxed text-white/90 mix-blend-difference">
+                    <p className="mt-6 max-w-md text-sm md:text-base leading-relaxed text-white mix-blend-difference">
                         YOUNG AT HEART WITH A VISION.
                     </p>
                 </div>

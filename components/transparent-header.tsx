@@ -9,51 +9,10 @@ import { cn } from "@/lib/utils";
 
 
 
-const ThemeToggle = () => {
-    const [theme, setTheme] = useState<"light" | "dark">("light");
-
-    useEffect(() => {
-        if (typeof window === "undefined") return;
-        const stored = window.localStorage.getItem("theme") as
-            | "light"
-            | "dark"
-            | null;
-        const prefersDark = window.matchMedia(
-            "(prefers-color-scheme: dark)"
-        ).matches;
-        const initial = stored ?? (prefersDark ? "dark" : "light");
-        setTheme(initial);
-        document.documentElement.setAttribute("data-theme", initial);
-        document.documentElement.classList.toggle("dark", initial === "dark");
-    }, []);
-
-    const toggle = () => {
-        const next = theme === "light" ? "dark" : "light";
-        setTheme(next);
-        document.documentElement.setAttribute("data-theme", next);
-        document.documentElement.classList.toggle("dark", next === "dark");
-        window.localStorage.setItem("theme", next);
-    };
-
-    const Icon = theme === "light" ? Moon : Sun;
-
-    return (
-        <button
-            type="button"
-            onClick={toggle}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-foreground/20 bg-background/60 text-foreground shadow-sm transition hover:bg-foreground hover:text-background"
-            aria-label="Toggle theme"
-        >
-            <Icon className="h-4 w-4" />
-        </button>
-    );
-};
-
 export interface TransparentHeaderProps {
     logoText?: string;
     className?: string;
     absolute?: boolean;
-    hideThemeToggle?: boolean;
     forceLightMode?: boolean;
     hideElements?: ("home" | "search" | "cart" | "auth")[];
 }
@@ -62,7 +21,6 @@ export const TransparentHeader = ({
     logoText = "46",
     className,
     absolute = true,
-    hideThemeToggle = false,
     forceLightMode = false,
     hideElements = [],
 }: TransparentHeaderProps) => {
@@ -143,8 +101,6 @@ export const TransparentHeader = ({
                             )}
                         </Link>
                     )}
-
-                    {!hideThemeToggle && <ThemeToggle />}
                 </div>
 
                 <div className={cn("flex items-center gap-5 md:hidden", forceLightMode ? "" : "text-white mix-blend-difference")}>
@@ -274,14 +230,6 @@ export const TransparentHeader = ({
                                     </Link>
                                 </div>
                             </nav>
-                        )}
-                        {!hideThemeToggle && (
-                            <div className="mt-4 flex items-center justify-between">
-                                <span className="text-xs uppercase tracking-[0.2em] text-foreground/80">
-                                    Theme
-                                </span>
-                                <ThemeToggle />
-                            </div>
                         )}
                     </motion.div>
                 )}

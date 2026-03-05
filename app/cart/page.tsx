@@ -13,7 +13,6 @@ export default function CartPage() {
     <main className="min-h-screen bg-white text-black relative">
       <TransparentHeader
         absolute={true}
-        hideThemeToggle={true}
         forceLightMode={true}
         hideElements={["cart"]}
       />
