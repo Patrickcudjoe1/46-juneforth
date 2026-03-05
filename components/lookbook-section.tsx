@@ -69,8 +69,8 @@ export function LookbookSection({ items = defaultItems }: LookbookSectionProps) 
             {/* Hero Video */}
             <div className="relative h-screen w-full overflow-hidden bg-black/5">
                 <video
-                    key="/VID-1.webm"
-                    src="/VID-1.webm"
+                    key="/VID-11.webm"
+                    src="/VID-11.webm"
                     autoPlay
                     loop
                     muted

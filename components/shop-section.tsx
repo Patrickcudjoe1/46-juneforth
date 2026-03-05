@@ -32,8 +32,11 @@ export function ShopSection() {
     };
 
     const handleAddToCart = () => {
-        if (selectedSize && selectedProduct) {
-            addItem(selectedProduct, selectedSize);
+        if (selectedProduct) {
+            const hasSizes = selectedProduct.sizes && selectedProduct.sizes.length > 0;
+            if (hasSizes && !selectedSize) return;
+            
+            addItem(selectedProduct, hasSizes ? selectedSize : "OS");
             handleClose();
         }
     };
@@ -180,9 +183,8 @@ export function ShopSection() {
 
                                 <button
                                     onClick={handleAddToCart}
-                                    disabled={!selectedSize}
-                                    className="mt-8 relative inline-flex h-12 w-full items-center justify-center overflow-hidden rounded-full border border-foreground bg-foreground text-background text-sm font-medium tracking-widest hover:bg-background hover:text-foreground transition-colors disabled:opacity-50 disabled:cursor-not-allowed group"
-                                >
+                                    disabled={!!(selectedProduct.sizes && selectedProduct.sizes.length > 0) && !selectedSize}
+                                    className="mt-8 relative inline-flex h-12 w-full items-center justify-center overflow-hidden rounded-full border border-foreground bg-foreground text-background text-sm font-medium tracking-widest hover:bg-background hover:text-foreground transition-colors disabled:opacity-50 disabled:cursor-not-allowed group">
                                     <span className="relative z-10 transition-transform duration-300 group-hover:scale-[1.03]">
                                         ADD TO CART
                                     </span>
