@@ -61,19 +61,10 @@ export function ShopSection() {
         setViewMode((prev) => (prev === "compact" ? "focus" : "compact"));
     };
 
-    const leftAction = (
-        <button
-            onClick={toggleViewMode}
-            className="text-xl opacity-70 hover:opacity-100 transition-opacity min-w-[32px] text-left"
-        >
-            {viewMode === "compact" ? "+" : "<"}
-        </button>
-    );
-
     if (selectedProduct) {
         return (
-            <div className="min-h-screen bg-background text-foreground">
-                <TransparentHeader />
+            <div className="min-h-screen bg-white text-black font-sans">
+                <TransparentHeader forceLightMode={true} hideThemeToggle={true} />
 
                 {/* Back Button */}
                 <button
@@ -196,20 +187,14 @@ export function ShopSection() {
 
 
     return (
-        <div className="min-h-screen bg-background text-foreground transition-colors duration-500">
-            <TransparentHeader />
+        <div className="min-h-screen bg-white text-black font-sans transition-colors duration-500">
+            <TransparentHeader forceLightMode={true} hideThemeToggle={true} />
 
             {/* Main Content */}
             <main className="pt-[73px]">
-                <div className="px-6 md:px-12 flex items-center pt-6 pb-2">
-                    {leftAction}
-                </div>
 
                 {/* Product Grid */}
-                <div className={`grid auto-rows-min gap-x-4 gap-y-12 sm:gap-x-8 sm:gap-y-16 px-6 md:px-12 py-12 transition-all duration-700 ease-in-out ${viewMode === "focus"
-                    ? "grid-cols-1 md:grid-cols-3"
-                    : "grid-cols-3 md:grid-cols-6"
-                    }`}>
+                <div className="grid auto-rows-min gap-x-4 gap-y-12 sm:gap-x-8 sm:gap-y-16 px-6 md:px-12 py-12 transition-all duration-700 ease-in-out grid-cols-2 md:grid-cols-3">
                     <AnimatePresence>
                         {products.map((product) => (
                             <motion.button
@@ -235,7 +220,7 @@ export function ShopSection() {
                                 </motion.div>
 
                                 <motion.div layout className="flex flex-col items-center">
-                                    <p className="font-mono text-xs md:text-sm tracking-widest text-center text-foreground font-bold">{product.name}</p>
+                                    <p className="font-mono text-[10px] md:text-xs tracking-[0.2em] text-center text-black font-bold uppercase">{product.name}</p>
                                 </motion.div>
                             </motion.button>
                         ))}

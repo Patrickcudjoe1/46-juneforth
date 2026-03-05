@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LayoutDashboard, Tag, ShoppingBag, Settings, LogOut } from "lucide-react";
-import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function AdminLayout({
     children,
@@ -20,7 +19,13 @@ export default function AdminLayout({
     ];
 
     return (
-        <div className="flex min-h-screen w-full bg-background text-foreground font-sans">
+        <div
+            className="flex min-h-screen w-full bg-background text-foreground font-sans dark"
+            style={{
+                "--background": "#0a0a0a",
+                "--foreground": "#ededed"
+            } as React.CSSProperties}
+        >
             {/* Sidebar */}
             <aside className="fixed inset-y-0 left-0 z-40 hidden w-64 flex-col border-r border-foreground/10 bg-background sm:flex">
                 <div className="flex h-16 shrink-0 items-center px-6 border-b border-foreground/10">
@@ -54,7 +59,6 @@ export default function AdminLayout({
                         <LogOut className="h-4 w-4" />
                         Exit to Store
                     </Link>
-                    <ThemeToggle />
                 </div>
             </aside>
 
@@ -65,7 +69,6 @@ export default function AdminLayout({
                     <Link href="/admin" className="font-mono text-lg font-bold tracking-widest">
                         46 ADMIN
                     </Link>
-                    <ThemeToggle />
                 </header>
 
                 <main className="flex-1 p-6 md:p-8 lg:p-12">
