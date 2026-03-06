@@ -35,7 +35,7 @@ export const JuneforthHeader = ({ className }: JuneforthHeaderProps) => {
                 "w-full z-[100] flex items-center px-6 transition-all duration-300 ease-in-out",
                 scrolled
                     ? "fixed top-0 left-0 right-0 bg-white py-4 border-t-[6px] border-[#2A1D15] shadow-sm text-black"
-                    : "absolute top-0 left-0 right-0 bg-transparent py-8 text-white",
+                    : "fixed top-0 left-0 right-0 bg-transparent py-8 text-white",
                 className
             )}
         >

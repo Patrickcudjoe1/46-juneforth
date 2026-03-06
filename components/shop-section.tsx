@@ -6,6 +6,7 @@ import { useCart } from "@/components/cart-provider";
 
 import { useProducts, Product } from '@/components/product-provider';
 import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 export function ShopSection() {
     const { addItem } = useCart();
@@ -14,7 +15,10 @@ export function ShopSection() {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [showProductInfo, setShowProductInfo] = useState(false);
     const [selectedSize, setSelectedSize] = useState<string | null>(null);
-    const [viewMode, setViewMode] = useState<"compact" | "focus">("compact");
+
+    // Column Toggling State
+    const [mobileColumns, setMobileColumns] = useState(3); // 3, 2, 1
+    const [isDesktopLarge, setIsDesktopLarge] = useState(false); // 6 or 3 columns
 
     const handleProductClick = (product: Product) => {
         setSelectedProduct(product);
@@ -40,24 +44,22 @@ export function ShopSection() {
         }
     };
 
-    const handlePrevImage = () => {
-        if (selectedProduct?.images) {
-            setCurrentImageIndex((prev) =>
-                prev === 0 ? selectedProduct.images!.length - 1 : prev - 1
-            );
+    const toggleColumns = () => {
+        const isDesktop = window.innerWidth >= 1024;
+        if (isDesktop) {
+            setIsDesktopLarge(!isDesktopLarge);
+        } else {
+            setMobileColumns((prev) => (prev === 1 ? 3 : prev - 1));
         }
     };
 
-    const handleNextImage = () => {
-        if (selectedProduct?.images) {
-            setCurrentImageIndex((prev) =>
-                prev === selectedProduct.images!.length - 1 ? 0 : prev + 1
-            );
+    const getToggleIcon = () => {
+        const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 1024;
+        if (isDesktop) {
+            return isDesktopLarge ? <span className="text-2xl font-bold">&lt;</span> : <span className="text-2xl font-bold">+</span>;
+        } else {
+            return mobileColumns === 1 ? <span className="text-2xl font-bold">&lt;</span> : <span className="text-2xl font-bold">+</span>;
         }
-    };
-
-    const toggleViewMode = () => {
-        setViewMode((prev) => (prev === "compact" ? "focus" : "compact"));
     };
 
     if (selectedProduct) {
@@ -66,7 +68,7 @@ export function ShopSection() {
                 {/* Back Button */}
                 <button
                     onClick={handleClose}
-                    className="fixed top-24 left-6 z-40 p-2 rounded-full bg-background/50 backdrop-blur-md shadow-sm border border-border/50 hover:bg-background transition-colors text-foreground"
+                    className="fixed top-6 left-6 z-[120] p-2 rounded-full bg-background/50 backdrop-blur-md shadow-sm border border-border/50 hover:bg-background transition-colors text-foreground"
                 >
                     <ArrowLeft className="w-5 h-5" />
                 </button>
@@ -75,11 +77,11 @@ export function ShopSection() {
                 <div className="flex flex-col items-center justify-center min-h-screen px-6 py-28">
                     {/* Image Carousel */}
                     <div className="relative w-full max-w-2xl mb-8 group">
-                        <div className="relative aspect-square rounded-2xl overflow-hidden bg-foreground/5 dark:bg-foreground/10">
+                        <div className="relative aspect-square rounded-2xl overflow-hidden bg-white">
                             <img
                                 src={selectedProduct.images?.[currentImageIndex] || selectedProduct.image}
                                 alt={selectedProduct.name}
-                                className="w-full h-full object-contain mix-blend-multiply dark:mix-blend-normal"
+                                className="w-full h-full object-contain"
                             />
                         </div>
 
@@ -87,13 +89,25 @@ export function ShopSection() {
                         {selectedProduct.images && selectedProduct.images.length > 1 && (
                             <>
                                 <button
-                                    onClick={handlePrevImage}
+                                    onClick={() => {
+                                        if (selectedProduct?.images) {
+                                            setCurrentImageIndex((prev) =>
+                                                prev === 0 ? selectedProduct.images!.length - 1 : prev - 1
+                                            );
+                                        }
+                                    }}
                                     className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-background/50 border border-border hover:bg-background transition shadow-sm text-foreground opacity-0 group-hover:opacity-100"
                                 >
                                     &lt;
                                 </button>
                                 <button
-                                    onClick={handleNextImage}
+                                    onClick={() => {
+                                        if (selectedProduct?.images) {
+                                            setCurrentImageIndex((prev) =>
+                                                prev === selectedProduct.images!.length - 1 ? 0 : prev + 1
+                                            );
+                                        }
+                                    }}
                                     className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-background/50 border border-border hover:bg-background transition shadow-sm text-foreground opacity-0 group-hover:opacity-100"
                                 >
                                     &gt;
@@ -102,25 +116,12 @@ export function ShopSection() {
                         )}
                     </div>
 
-                    {/* Image Dots */}
-                    {selectedProduct.images && selectedProduct.images.length > 1 && (
-                        <div className="flex gap-2 mb-6">
-                            {selectedProduct.images.map((_, index) => (
-                                <button
-                                    key={index}
-                                    onClick={() => setCurrentImageIndex(index)}
-                                    className={`w-2 h-2 rounded-full transition-colors ${index === currentImageIndex ? "bg-foreground" : "bg-foreground/20 hover:bg-foreground/50"
-                                        }`}
-                                />
-                            ))}
-                        </div>
-                    )}
-
                     {/* Product Info */}
                     <div className="text-center space-y-4 max-w-md w-full">
-                        <h1 className="text-xl font-medium tracking-widest">{selectedProduct.name}</h1>
-                        {selectedProduct.price && (
-                            <p className="text-lg text-foreground/80">{selectedProduct.price}</p>
+                        <h1 className="text-sm font-bold tracking-[0.2em] uppercase">{selectedProduct.name}</h1>
+                        {/* Material */}
+                        {selectedProduct.material && (
+                            <p className="text-[10px] uppercase tracking-wider text-black/50">{selectedProduct.material}</p>
                         )}
 
                         {!showProductInfo ? (
@@ -134,29 +135,20 @@ export function ShopSection() {
                             <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
                                 {/* Description */}
                                 {selectedProduct.description && (
-                                    <p className="text-sm text-foreground/70 mt-4 leading-relaxed">{selectedProduct.description}</p>
-                                )}
-
-                                {/* Material */}
-                                {selectedProduct.material && (
-                                    <div className="mt-6 text-left border-t border-border/50 pt-4">
-                                        <p className="text-xs uppercase tracking-wider text-foreground/50 mb-1">Material</p>
-                                        <p className="text-sm font-medium">{selectedProduct.material}</p>
-                                    </div>
+                                    <p className="text-[11px] text-black/70 mt-4 leading-relaxed tracking-wider uppercase">{selectedProduct.description}</p>
                                 )}
 
                                 {/* Sizes */}
                                 {selectedProduct.sizes && selectedProduct.sizes.length > 0 && (
-                                    <div className="mt-6 border-t border-border/50 pt-4">
-                                        <p className="text-xs uppercase tracking-wider text-foreground/50 mb-3 text-left">Size</p>
-                                        <div className="flex flex-wrap gap-2">
+                                    <div className="mt-6 pt-4">
+                                        <div className="flex flex-wrap justify-center gap-4">
                                             {selectedProduct.sizes.map((size) => (
                                                 <button
                                                     key={size}
                                                     onClick={() => setSelectedSize(size)}
-                                                    className={`px-4 py-2 border rounded-full transition-colors text-sm font-medium ${selectedSize === size
-                                                        ? "border-foreground bg-foreground text-background"
-                                                        : "border-border hover:border-foreground/50 text-foreground"
+                                                    className={`text-[10px] tracking-widest uppercase transition-colors ${selectedSize === size
+                                                        ? "font-bold underline underline-offset-4"
+                                                        : "text-black/40 hover:text-black"
                                                         }`}
                                                 >
                                                     {size}
@@ -169,9 +161,9 @@ export function ShopSection() {
                                 <button
                                     onClick={handleAddToCart}
                                     disabled={!!(selectedProduct.sizes && selectedProduct.sizes.length > 0) && !selectedSize}
-                                    className="mt-8 relative inline-flex h-12 w-full items-center justify-center overflow-hidden rounded-full border border-foreground bg-foreground text-background text-sm font-medium tracking-widest hover:bg-background hover:text-foreground transition-colors disabled:opacity-50 disabled:cursor-not-allowed group">
-                                    <span className="relative z-10 transition-transform duration-300 group-hover:scale-[1.03]">
-                                        ADD TO CART
+                                    className="mt-8 relative inline-flex h-12 w-full items-center justify-center border border-black bg-white text-black text-[11px] font-bold tracking-[0.2em] hover:bg-black hover:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed group">
+                                    <span className="relative z-10">
+                                        ADD TO BAG
                                     </span>
                                 </button>
                             </div>
@@ -182,40 +174,75 @@ export function ShopSection() {
         );
     }
 
-
     return (
-        <div className="min-h-screen bg-white text-black font-sans transition-colors duration-500">
-            {/* Main Content */}
-            <main className="pt-[73px]">
+        <div className="min-h-screen bg-white text-black font-sans selection:bg-black selection:text-white">
+            <style dangerouslySetInnerHTML={{
+                __html: `
+                header:not(.shop-header) { display: none !important; }
+            ` }} />
+            {/* Specialized Shop Header */}
+            <div className="fixed top-0 left-0 right-0 z-[110] bg-white transition-all duration-300 border-b border-black/5 shop-header">
+                <div className="flex items-center justify-between px-6 py-4 max-w-[1400px] mx-auto">
+                    {/* Left: Column Toggle */}
+                    <div className="w-1/4">
+                        <button
+                            onClick={toggleColumns}
+                            className="hover:opacity-60 transition-opacity font-light"
+                        >
+                            {/* Use unified logic from helper */}
+                            <span className="text-2xl leading-none">
+                                {getToggleIcon()}
+                            </span>
+                        </button>
+                    </div>
 
+                    {/* Center: Categories (Removed per user request) */}
+                    <div className="w-2/4 flex flex-col items-center gap-1" />
+
+                    {/* Right: Empty */}
+                    <div className="w-1/4" />
+                </div>
+            </div>
+
+            {/* Main Content */}
+            <main className="pt-[80px] pb-24">
                 {/* Product Grid */}
-                <div className="grid auto-rows-min gap-x-4 gap-y-12 sm:gap-x-8 sm:gap-y-16 px-6 md:px-12 py-12 transition-all duration-700 ease-in-out grid-cols-2 md:grid-cols-3">
-                    <AnimatePresence>
+                <div
+                    className={cn(
+                        "grid gap-x-2 gap-y-12 px-2 md:px-6 transition-all duration-500 ease-in-out",
+                        // Mobile/Tablet columns
+                        mobileColumns === 1 ? "grid-cols-1" :
+                            mobileColumns === 2 ? "grid-cols-2" : "grid-cols-3",
+                        // Desktop columns override
+                        isDesktopLarge ? "lg:grid-cols-3" : "lg:grid-cols-6"
+                    )}
+                >
+                    <AnimatePresence mode="popLayout">
                         {products.map((product) => (
                             <motion.button
                                 layout
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
-                                transition={{ duration: 0.7, ease: "easeInOut" }}
+                                transition={{ duration: 0.5, ease: "easeInOut" }}
                                 key={product.id}
                                 onClick={() => handleProductClick(product)}
-                                className="group flex flex-col items-center gap-4 w-full"
+                                className="group flex flex-col items-center gap-3 w-full"
                             >
                                 <motion.div
                                     layout
-                                    className="relative aspect-[4/5] w-full overflow-hidden"
+                                    className="relative aspect-square w-full bg-white flex items-center justify-center p-2"
                                 >
                                     <motion.img
                                         layout
                                         src={product.image}
                                         alt={product.name}
-                                        className="absolute inset-0 h-full w-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-700 ease-out mix-blend-multiply dark:mix-blend-normal"
+                                        className="h-full w-auto object-contain transition-transform duration-700 ease-out grayscale-[10%]"
                                     />
                                 </motion.div>
 
                                 <motion.div layout className="flex flex-col items-center">
-                                    <p className="font-mono text-[10px] md:text-xs tracking-[0.2em] text-center text-black font-bold uppercase">{product.name}</p>
+                                    <p className="text-[9px] md:text-[10px] tracking-[0.2em] text-center text-black font-bold uppercase transition-opacity group-hover:opacity-60">{product.name}</p>
                                 </motion.div>
                             </motion.button>
                         ))}
