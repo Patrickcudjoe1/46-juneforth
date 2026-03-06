@@ -18,9 +18,9 @@ interface Product {
 
 // Use images from public/images folder
 const products: Product[] = [
-  { id: "1", name: "PK-01", price: "$100", description: "Insulated puffer jacket with fur-trimmed hood", material: "100% Nylon, Down Fill", sizes: ["XS","S","M","L","XL","XXL"], image: "/images/J4-1.png", images: ["/images/J4-1.png","/images/J4-3.jpg","/images/J4-7.jpg","/images/J4-9.jpg"] },
-  { id: "2", name: "JC-10", price: "$120", description: "Classic bomber jacket with ribbed details", material: "100% Polyester", sizes: ["S","M","L","XL"], image: "/images/J4-10.jpg", images: ["/images/J4-10.jpg","/images/J4-11.jpg"] },
-  { id: "3", name: "JC-11", price: "$130", description: "Oversized utility jacket", material: "Cotton Blend", sizes: ["S","M","L","XL"], image: "/images/J4-13.jpg", images: ["/images/J4-13.jpg"] },
+  { id: "1", name: "PK-01", price: "$100", description: "Insulated puffer jacket with fur-trimmed hood", material: "100% Nylon, Down Fill", sizes: ["XS", "S", "M", "L", "XL", "XXL"], image: "/images/J4-1.png", images: ["/images/J4-1.png", "/images/J4-3.jpg", "/images/J4-7.jpg", "/images/J4-9.jpg"] },
+  { id: "2", name: "JC-10", price: "$120", description: "Classic bomber jacket with ribbed details", material: "100% Polyester", sizes: ["S", "M", "L", "XL"], image: "/images/J4-10.jpg", images: ["/images/J4-10.jpg", "/images/J4-11.jpg"] },
+  { id: "3", name: "JC-11", price: "$130", description: "Oversized utility jacket", material: "Cotton Blend", sizes: ["S", "M", "L", "XL"], image: "/images/J4-13.jpg", images: ["/images/J4-13.jpg"] },
   { id: "4", name: "SL-03", price: "$80", image: "/images/J4-14.jpg", images: ["/images/J4-14.jpg"] },
   { id: "5", name: "BL-01", price: "$150", image: "/images/look_1_new_1772586185397.png", images: ["/images/look_1_new_1772586185397.png"] },
   { id: "6", name: "SG-03", price: "$45", image: "/images/look_2_1772585734074.png", images: ["/images/look_2_1772585734074.png"] },
@@ -139,19 +139,6 @@ export default function YeezyStore() {
 
   return (
     <div className="min-h-screen bg-neutral-50">
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-neutral-200">
-        <div className="flex items-center justify-between px-6 py-4">
-          <button onClick={() => setIsEnlarged(!isEnlarged)} className="text-2xl hover:opacity-70 transition-opacity">{isEnlarged ? "<" : "+"}</button>
-          <nav className="flex items-center gap-4 md:gap-8 text-xs md:text-sm tracking-wider">
-            <a href="#" className="font-bold">NEW</a>
-            <a href="#" className="text-neutral-400 hover:text-black transition-colors">MENS</a>
-            <a href="#" className="text-neutral-400 hover:text-black transition-colors">WOMENS</a>
-            <a href="#" className="hidden sm:inline text-neutral-400 hover:text-black transition-colors">SLIDES</a>
-            <a href="#" className="hidden sm:inline text-neutral-400 hover:text-black transition-colors">ACCESSORIES</a>
-          </nav>
-          <button onClick={() => setShowAuth(true)} className="text-sm tracking-wider hover:opacity-70 transition-opacity">SIGN IN</button>
-        </div>
-      </header>
 
       {showAuth && (
         <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-6">

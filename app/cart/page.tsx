@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { ShoppingCart } from "lucide-react";
 import { useCart } from "@/components/cart-provider";
-import { TransparentHeader } from "@/components/transparent-header";
 
 export default function CartPage() {
   const { items, removeItem, updateQuantity, subtotal, totalItems } = useCart();
@@ -11,12 +10,6 @@ export default function CartPage() {
 
   return (
     <main className="min-h-screen bg-white text-black relative">
-      <TransparentHeader
-        absolute={true}
-        forceLightMode={true}
-        disableThemeToggle={true}
-        hideElements={["cart"]}
-      />
       <div className="mx-auto w-full max-w-5xl px-6 pb-10 md:px-10 pt-40">
         <header className="flex items-center justify-between gap-4">
           <div>

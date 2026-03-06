@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useCart } from "@/components/cart-provider";
-import { TransparentHeader } from "@/components/transparent-header";
 
 export default function CheckoutPage() {
     const { items, subtotal, totalItems } = useCart();
@@ -11,12 +10,6 @@ export default function CheckoutPage() {
 
     return (
         <main className="min-h-screen bg-white text-black font-mono relative">
-            <TransparentHeader
-                absolute={true}
-                forceLightMode={true}
-                disableThemeToggle={true}
-                hideElements={["cart"]}
-            />
             <div className="mx-auto w-full max-w-6xl px-6 pb-10 md:px-10 pt-40">
                 <header className="mb-10 flex items-center justify-between">
                     <Link

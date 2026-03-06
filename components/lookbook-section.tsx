@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { TransparentHeader } from "@/components/transparent-header";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 
 export interface LookbookItem {
@@ -60,11 +59,6 @@ export function LookbookSection({ items = defaultItems }: LookbookSectionProps) 
 
     return (
         <div className="bg-white text-black min-h-screen relative">
-            <TransparentHeader
-                absolute={true}
-                disableThemeToggle={true}
-                forceLightMode={true}
-            />
 
             {/* Hero Video */}
             <div className="relative h-screen w-full overflow-hidden bg-black/5">

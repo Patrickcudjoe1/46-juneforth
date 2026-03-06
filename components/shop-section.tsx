@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { TransparentHeader } from "@/components/transparent-header";
 import { ArrowLeft } from "lucide-react";
 import { useCart } from "@/components/cart-provider";
 
@@ -63,9 +62,7 @@ export function ShopSection() {
 
     if (selectedProduct) {
         return (
-            <div className="min-h-screen bg-white text-black font-sans">
-                <TransparentHeader forceLightMode={true} disableThemeToggle={true} />
-
+            <div className="min-h-screen bg-white text-black font-sans transition-colors duration-500">
                 {/* Back Button */}
                 <button
                     onClick={handleClose}
@@ -188,8 +185,6 @@ export function ShopSection() {
 
     return (
         <div className="min-h-screen bg-white text-black font-sans transition-colors duration-500">
-            <TransparentHeader forceLightMode={true} disableThemeToggle={true} />
-
             {/* Main Content */}
             <main className="pt-[73px]">
 

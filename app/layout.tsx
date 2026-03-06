@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { CartProvider } from "@/components/cart-provider";
 import { ProductProvider } from "@/components/product-provider";
+import { HeaderWrapper } from "@/components/header-wrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,6 +48,7 @@ export default function RootLayout({
       >
         <ProductProvider>
           <CartProvider>
+            <HeaderWrapper />
             {children}
           </CartProvider>
         </ProductProvider>
