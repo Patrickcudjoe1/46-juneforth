@@ -1,5 +1,5 @@
 import { JuneforthHero } from "@/components/juneforth-hero";
-import { EssentialsSection } from "@/components/essentials-section";
+import { EssentialsSection } from "@/components/whats-Newsection";
 
 export default function Home() {
   return (
