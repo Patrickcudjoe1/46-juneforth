@@ -64,15 +64,14 @@ export const JuneforthHeader = ({ className }: JuneforthHeaderProps) => {
             {/* Logo (Centered) */}
             <div className="flex flex-1 justify-center">
                 <Link href="/" className="group">
-                    <div
+                    <img
+                        src="/images/JUNE       FORTH_logo.png"
+                        alt="JUNEFORTH"
                         className={cn(
-                            "text-[14px] lg:text-[18px] font-bold tracking-[0.3em] lg:tracking-[0.45em] uppercase group-hover:opacity-60 transition-opacity",
-                            scrolled ? "text-black" : "text-white"
+                            "h-4 lg:h-6 w-auto transition-all duration-300",
+                            scrolled ? "brightness-0" : "brightness-0 invert"
                         )}
-                        style={{ fontFamily: "'Futuracyrillic ExtraBold', sans-serif" }}
-                    >
-                        JUNEFORTH*
-                    </div>
+                    />
                 </Link>
             </div>
 

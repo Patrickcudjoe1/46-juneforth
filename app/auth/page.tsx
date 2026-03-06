@@ -13,9 +13,9 @@ export default function AuthPage() {
         <div className="w-full max-w-md pt-24">
           <div className="mb-8 flex justify-center">
             <img
-              src="/images/LOGO.jpg"
-              alt="46"
-              className="h-16 md:h-24 object-contain mix-blend-multiply dark:mix-blend-screen brightness-0 dark:invert"
+              src="/images/JUNE       FORTH_logo.png"
+              alt="JUNEFORTH"
+              className="h-12 md:h-16 object-contain"
             />
           </div>
           <div className="mb-12 flex justify-center space-x-8 border-b border-foreground/20 pb-4">
