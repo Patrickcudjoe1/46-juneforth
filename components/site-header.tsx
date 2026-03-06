@@ -19,6 +19,11 @@ const NavLink = ({ href, children }: { href: string; children: React.ReactNode }
     );
 };
 
+export interface SiteHeaderProps {
+    leftAction?: React.ReactNode;
+    disableThemeToggle?: boolean;
+}
+
 
 export function SiteHeader({ leftAction, disableThemeToggle = false }: SiteHeaderProps) {
     const { totalItems } = useCart();
