@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 
 import Link from "next/link";
-import { User, ShoppingBag, Home, ChevronDown } from "lucide-react";
+import { ShoppingBag, Search, Menu } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "@/components/cart-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -19,89 +19,36 @@ const NavLink = ({ href, children }: { href: string; children: React.ReactNode }
     );
 };
 
-export interface SiteHeaderProps {
-    leftAction?: React.ReactNode;
-    disableThemeToggle?: boolean;
-}
 
-export const SiteHeader = ({ leftAction, disableThemeToggle = false }: SiteHeaderProps) => {
+export function SiteHeader({ leftAction, disableThemeToggle = false }: SiteHeaderProps) {
     const { totalItems } = useCart();
     const [mounted, setMounted] = useState(false);
-    const [isFilterOpen, setIsFilterOpen] = useState(false);
-    const categories = ["NEW", "MENS", "WOMENS", "SLIDES", "ACCESSORIES"];
-    const [activeCategory, setActiveCategory] = useState("NEW");
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
+    useEffect(() => { setMounted(true); }, []);
 
     return (
-        <header className="absolute top-0 left-0 right-0 z-50 flex w-full items-center justify-between bg-transparent px-6 py-4 md:px-12 pointer-events-none">
+        <header className="fixed top-0 left-0 right-0 z-50 flex w-full items-center justify-between bg-transparent px-4 py-3 pointer-events-none">
+            {/* Left: Hamburger */}
             <div className="flex items-center min-w-[32px] pointer-events-auto">
-                {leftAction || (
-                    <button className="text-xl opacity-70 hover:opacity-100 transition-opacity">
-                        +
-                    </button>
-                )}
-            </div>
-
-            <div className="relative flex flex-1 justify-center z-50 pointer-events-auto">
-                <button
-                    onClick={() => setIsFilterOpen(!isFilterOpen)}
-                    className="flex items-center gap-2 text-xs md:text-sm font-mono tracking-widest font-bold text-foreground hover:opacity-70 transition-opacity uppercase"
-                >
-                    {activeCategory} <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${isFilterOpen ? "rotate-180" : ""}`} />
+                <button className="text-white" aria-label="Open menu">
+                    <Menu className="h-6 w-6" />
                 </button>
-
-                <AnimatePresence>
-                    {isFilterOpen && (
-                        <motion.div
-                            initial={{ opacity: 0, y: -10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -10 }}
-                            transition={{ duration: 0.2 }}
-                            className="absolute top-full mt-6 flex flex-col w-48 bg-background border border-foreground/20 shadow-lg rounded-none overflow-hidden"
-                        >
-                            {categories.map((cat) => (
-                                <button
-                                    key={cat}
-                                    onClick={() => {
-                                        setActiveCategory(cat);
-                                        setIsFilterOpen(false);
-                                    }}
-                                    className={`text-left px-6 py-4 text-xs font-mono tracking-widest uppercase transition-colors ${activeCategory === cat
-                                        ? "bg-foreground text-background font-bold"
-                                        : "hover:bg-foreground/5 text-foreground/70 hover:text-foreground"
-                                        }`}
-                                >
-                                    {cat}
-                                </button>
-                            ))}
-                        </motion.div>
-                    )}
-                </AnimatePresence>
             </div>
 
-            <div className="flex items-center gap-6 pointer-events-auto">
-                {!disableThemeToggle && <ThemeToggle />}
-                <Link
-                    href="/"
-                    className="flex items-center justify-center hover:opacity-70 transition-opacity text-foreground"
-                    aria-label="Home"
-                >
-                    <Home className="h-5 w-5" strokeWidth={1.5} />
-                </Link>
-                <Link
-                    href="/cart"
-                    className="flex items-center gap-2 hover:opacity-70 transition-opacity text-foreground"
-                    aria-label="Cart"
-                >
-                    <ShoppingBag className="h-5 w-5" strokeWidth={1.5} />
-                    <span className="font-mono text-xs">
-                        ({mounted ? totalItems : 0})
-                    </span>
+            {/* Center: Title */}
+            <div className="flex-1 flex justify-center pointer-events-auto">
+                <span className="text-white font-bold tracking-[0.3em] text-lg uppercase" style={{ letterSpacing: '0.3em' }}>Fear of God</span>
+            </div>
+
+            {/* Right: Search and Cart */}
+            <div className="flex items-center gap-4 min-w-[64px] justify-end pointer-events-auto">
+                <button className="text-white" aria-label="Search">
+                    <Search className="h-5 w-5" />
+                </button>
+                <Link href="/cart" className="text-white flex items-center" aria-label="Cart">
+                    <ShoppingBag className="h-5 w-5" />
+                    {/* Optionally show cart count: <span className="ml-1 text-xs">({mounted ? totalItems : 0})</span> */}
                 </Link>
             </div>
         </header>
     );
-};
+}

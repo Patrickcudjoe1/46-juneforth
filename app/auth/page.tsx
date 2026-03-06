@@ -12,6 +12,7 @@ export default function AuthPage() {
       <TransparentHeader
         absolute={true}
         hideElements={["auth"]}
+        disableThemeToggle={true}
       />
 
       <main className="flex min-h-screen flex-col items-center justify-center p-6 md:p-12">

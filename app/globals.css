@@ -1,5 +1,22 @@
 @import "tailwindcss";
 
+/* Custom fonts loaded from local assets */
+@font-face {
+  font-family: 'Futuracyrillic Light';
+  src: url('/fonts/FuturaCyrillicLight.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Futuracyrillic ExtraBold';
+  src: url('/fonts/FuturaCyrillicExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -28,8 +45,11 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-hero-circle: var(--hero-circle);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Set default font variables to Futuracyrillic family for site-wide consistency */
+  --font-sans: 'Futuracyrillic Light', ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  --font-mono: 'Futuracyrillic ExtraBold', ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -44,4 +64,22 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+}
+
+/* FUTURACYRILLIC FONT OVERRIDES */
+body {
+  font-family: 'Futuracyrillic Light', ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Futuracyrillic ExtraBold', ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  text-transform: uppercase;
 }
