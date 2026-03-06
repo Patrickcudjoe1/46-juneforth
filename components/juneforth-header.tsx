@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Search, ShoppingBag, Menu } from "lucide-react";
+import { Search as SearchIcon, ShoppingBag as BagIcon } from "lucide-react";
+import { useCart } from "@/components/cart-provider";
 import { cn } from "@/lib/utils";
 
 interface JuneforthHeaderProps {
@@ -10,6 +11,7 @@ interface JuneforthHeaderProps {
 }
 
 export const JuneforthHeader = ({ className }: JuneforthHeaderProps) => {
+    const { totalItems } = useCart();
     const [mounted, setMounted] = useState(false);
     const [scrolled, setScrolled] = useState(false);
 
@@ -48,7 +50,6 @@ export const JuneforthHeader = ({ className }: JuneforthHeaderProps) => {
                 <Link href="/shop" className="hover:opacity-60 transition-opacity">COLLECTIONS</Link>
                 <Link href="/shop" className="hover:opacity-60 transition-opacity">MENS</Link>
                 <Link href="/shop" className="hover:opacity-60 transition-opacity">WOMENS</Link>
-                {/* <Link href="/shop" className="hover:opacity-60 transition-opacity">KIDS</Link> */}
             </nav>
 
             {/* Mobile: Left Menu Icon */}
@@ -82,16 +83,23 @@ export const JuneforthHeader = ({ className }: JuneforthHeaderProps) => {
             )}>
                 <button className="hover:opacity-60 transition-opacity uppercase">SEARCH</button>
                 <Link href="/account" className="hover:opacity-60 transition-opacity uppercase">ACCOUNT</Link>
-                <Link href="/cart" className="hover:opacity-60 transition-opacity uppercase">BAG</Link>
+                <Link href="/cart" className="hover:opacity-60 transition-opacity uppercase flex items-center gap-1">
+                    BAG ({totalItems})
+                </Link>
             </nav>
 
             {/* Mobile: Right Icons (Search & Bag) */}
             <div className={cn("flex lg:hidden flex-1 justify-end gap-4", scrolled ? "text-black" : "text-white")}>
                 <button className="hover:opacity-60 transition-opacity">
-                    <Search className="h-5 w-5" strokeWidth={1.5} />
+                    <SearchIcon className="h-5 w-5" strokeWidth={1.5} />
                 </button>
-                <Link href="/cart" className="hover:opacity-60 transition-opacity">
-                    <ShoppingBag className="h-5 w-5" strokeWidth={1.5} />
+                <Link href="/cart" className="hover:opacity-60 transition-opacity relative">
+                    <BagIcon className="h-5 w-5" strokeWidth={1.5} />
+                    {totalItems > 0 && (
+                        <span className="absolute -top-2 -right-2 bg-black text-white text-[8px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
+                            {totalItems}
+                        </span>
+                    )}
                 </Link>
             </div>
         </header>

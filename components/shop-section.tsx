@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowLeft } from "lucide-react";
+
+import Link from "next/link";
+import { ArrowLeft, ShoppingBag } from "lucide-react";
 import { useCart } from "@/components/cart-provider";
 
 import { useProducts, Product } from '@/components/product-provider';
@@ -9,7 +11,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export function ShopSection() {
-    const { addItem } = useCart();
+    const { addItem, totalItems } = useCart();
     const { products, isLoading } = useProducts();
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -187,20 +189,23 @@ export function ShopSection() {
                     <div className="w-1/4">
                         <button
                             onClick={toggleColumns}
-                            className="hover:opacity-60 transition-opacity font-light"
+                            className="hover:opacity-60 transition-opacity font-light text-2xl leading-none"
                         >
-                            {/* Use unified logic from helper */}
-                            <span className="text-2xl leading-none">
-                                {getToggleIcon()}
-                            </span>
+                            {getToggleIcon()}
                         </button>
                     </div>
 
-                    {/* Center: Categories (Removed per user request) */}
-                    <div className="w-2/4 flex flex-col items-center gap-1" />
-
-                    {/* Right: Empty */}
-                    <div className="w-1/4" />
+                    {/* Right: Cart */}
+                    <div className="w-1/4 flex justify-end">
+                        <Link href="/cart" className="hover:opacity-60 transition-opacity relative">
+                            <ShoppingBag className="h-5 w-5" strokeWidth={1.5} />
+                            {totalItems > 0 && (
+                                <span className="absolute -top-2 -right-2 bg-black text-white text-[8px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
+                                    {totalItems}
+                                </span>
+                            )}
+                        </Link>
+                    </div>
                 </div>
             </div>
 
