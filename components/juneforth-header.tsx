@@ -20,7 +20,9 @@ export const JuneforthHeader = ({ className }: JuneforthHeaderProps) => {
     const pathname = usePathname();
 
     const isAccountPage = pathname === "/account";
+    const isPolicyPage = ["/contact", "/services", "/legal", "/supply-chain"].includes(pathname || "");
     const forceSolid = isAccountPage;
+    const forceBlack = isPolicyPage;
 
     useEffect(() => {
         setMounted(true);
@@ -52,7 +54,6 @@ export const JuneforthHeader = ({ className }: JuneforthHeaderProps) => {
         { name: "COLLECTIONS", href: "/shop" },
         { name: "MENS", href: "/shop" },
         { name: "WOMENS", href: "/shop" },
-        { name: "KIDS", href: "/shop" },
     ];
 
     const utilityLinks = [
@@ -69,16 +70,18 @@ export const JuneforthHeader = ({ className }: JuneforthHeaderProps) => {
             <header
                 className={cn(
                     "w-full z-[100] flex items-center px-6 transition-all duration-300 ease-in-out",
-                    (scrolled || forceSolid || isMenuOpen)
-                        ? "fixed top-0 left-0 right-0 bg-white py-4 border-t-[6px] border-[#2A1D15] shadow-sm text-black"
-                        : "fixed top-0 left-0 right-0 bg-transparent py-8 text-white",
+                    forceBlack
+                        ? "fixed top-0 left-0 right-0 bg-black py-4 shadow-sm text-white"
+                        : (scrolled || forceSolid || isMenuOpen)
+                            ? "fixed top-0 left-0 right-0 bg-white py-4 border-t-[6px] border-[#2A1D15] shadow-sm text-black"
+                            : "fixed top-0 left-0 right-0 bg-transparent py-8 text-white",
                     className
                 )}
             >
                 {/* Desktop: Left Navigation */}
                 <nav className={cn(
                     "hidden lg:flex flex-1 items-center justify-start gap-10 text-[11px] font-medium tracking-[0.2em]",
-                    (scrolled || forceSolid) ? "text-black" : "text-white"
+                    forceBlack ? "text-white" : (scrolled || forceSolid) ? "text-black" : "text-white"
                 )}>
                     <Link href="/shop" className="hover:opacity-60 transition-opacity">FEATURED</Link>
                     <Link href="/shop" className="hover:opacity-60 transition-opacity">COLLECTIONS</Link>
@@ -90,7 +93,7 @@ export const JuneforthHeader = ({ className }: JuneforthHeaderProps) => {
                 <div className="flex lg:hidden flex-1 justify-start">
                     <button
                         onClick={() => setIsMenuOpen(true)}
-                        className={cn("hover:opacity-60 transition-opacity", (scrolled || forceSolid) ? "text-black" : "text-white")}
+                        className={cn("hover:opacity-60 transition-opacity", forceBlack ? "text-white" : (scrolled || forceSolid) ? "text-black" : "text-white")}
                     >
                         <Menu size={24} strokeWidth={1.5} />
                     </button>
@@ -104,7 +107,7 @@ export const JuneforthHeader = ({ className }: JuneforthHeaderProps) => {
                             alt="JUNEFORTH"
                             className={cn(
                                 "h-4 lg:h-6 w-auto transition-all duration-300",
-                                (scrolled || forceSolid || isMenuOpen) ? "brightness-0" : "brightness-0 invert"
+                                forceBlack ? "brightness-0 invert" : (scrolled || forceSolid || isMenuOpen) ? "brightness-0" : "brightness-0 invert"
                             )}
                         />
                     </Link>
@@ -113,7 +116,7 @@ export const JuneforthHeader = ({ className }: JuneforthHeaderProps) => {
                 {/* Desktop: Right Navigation */}
                 <nav className={cn(
                     "hidden lg:flex flex-1 items-center justify-end gap-10 text-[11px] font-medium tracking-[0.2em]",
-                    (scrolled || forceSolid) ? "text-black" : "text-white"
+                    forceBlack ? "text-white" : (scrolled || forceSolid) ? "text-black" : "text-white"
                 )}>
                     <button className="hover:opacity-60 transition-opacity uppercase">SEARCH</button>
                     <Link href="/account" className="hover:opacity-60 transition-opacity uppercase">ACCOUNT</Link>
@@ -123,7 +126,7 @@ export const JuneforthHeader = ({ className }: JuneforthHeaderProps) => {
                 </nav>
 
                 {/* Mobile: Right Icons (Search & Bag) */}
-                <div className={cn("flex lg:hidden flex-1 justify-end gap-4", (scrolled || forceSolid || isMenuOpen) ? "text-black" : "text-white")}>
+                <div className={cn("flex lg:hidden flex-1 justify-end gap-4", forceBlack ? "text-white" : (scrolled || forceSolid || isMenuOpen) ? "text-black" : "text-white")}>
                     <button className="hover:opacity-60 transition-opacity">
                         <SearchIcon className="h-5 w-5" strokeWidth={1.5} />
                     </button>
