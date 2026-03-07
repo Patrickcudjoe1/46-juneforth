@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Search as SearchIcon, ShoppingBag as BagIcon } from "lucide-react";
 import { useCart } from "@/components/cart-provider";
@@ -14,6 +15,10 @@ export const JuneforthHeader = ({ className }: JuneforthHeaderProps) => {
     const { totalItems } = useCart();
     const [mounted, setMounted] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const pathname = usePathname();
+
+    const isAccountPage = pathname === "/account";
+    const forceSolid = isAccountPage;
 
     useEffect(() => {
         setMounted(true);
@@ -35,7 +40,7 @@ export const JuneforthHeader = ({ className }: JuneforthHeaderProps) => {
         <header
             className={cn(
                 "w-full z-[100] flex items-center px-6 transition-all duration-300 ease-in-out",
-                scrolled
+                (scrolled || forceSolid)
                     ? "fixed top-0 left-0 right-0 bg-white py-4 border-t-[6px] border-[#2A1D15] shadow-sm text-black"
                     : "fixed top-0 left-0 right-0 bg-transparent py-8 text-white",
                 className
@@ -44,7 +49,7 @@ export const JuneforthHeader = ({ className }: JuneforthHeaderProps) => {
             {/* Desktop: Left Navigation */}
             <nav className={cn(
                 "hidden lg:flex flex-1 items-center justify-start gap-10 text-[11px] font-medium tracking-[0.2em]",
-                scrolled ? "text-black" : "text-white"
+                (scrolled || forceSolid) ? "text-black" : "text-white"
             )}>
                 <Link href="/shop" className="hover:opacity-60 transition-opacity">FEATURED</Link>
                 <Link href="/shop" className="hover:opacity-60 transition-opacity">COLLECTIONS</Link>
@@ -54,7 +59,7 @@ export const JuneforthHeader = ({ className }: JuneforthHeaderProps) => {
 
             {/* Mobile: Left Menu Icon */}
             <div className="flex lg:hidden flex-1 justify-start">
-                <button className={cn("hover:opacity-60 transition-opacity", scrolled ? "text-black" : "text-white")}>
+                <button className={cn("hover:opacity-60 transition-opacity", (scrolled || forceSolid) ? "text-black" : "text-white")}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                         <line x1="4" y1="9" x2="20" y2="9" />
                         <line x1="4" y1="15" x2="20" y2="15" />
@@ -70,7 +75,7 @@ export const JuneforthHeader = ({ className }: JuneforthHeaderProps) => {
                         alt="JUNEFORTH"
                         className={cn(
                             "h-4 lg:h-6 w-auto transition-all duration-300",
-                            scrolled ? "brightness-0" : "brightness-0 invert"
+                            (scrolled || forceSolid) ? "brightness-0" : "brightness-0 invert"
                         )}
                     />
                 </Link>
@@ -79,7 +84,7 @@ export const JuneforthHeader = ({ className }: JuneforthHeaderProps) => {
             {/* Desktop: Right Navigation */}
             <nav className={cn(
                 "hidden lg:flex flex-1 items-center justify-end gap-10 text-[11px] font-medium tracking-[0.2em]",
-                scrolled ? "text-black" : "text-white"
+                (scrolled || forceSolid) ? "text-black" : "text-white"
             )}>
                 <button className="hover:opacity-60 transition-opacity uppercase">SEARCH</button>
                 <Link href="/account" className="hover:opacity-60 transition-opacity uppercase">ACCOUNT</Link>
@@ -89,7 +94,7 @@ export const JuneforthHeader = ({ className }: JuneforthHeaderProps) => {
             </nav>
 
             {/* Mobile: Right Icons (Search & Bag) */}
-            <div className={cn("flex lg:hidden flex-1 justify-end gap-4", scrolled ? "text-black" : "text-white")}>
+            <div className={cn("flex lg:hidden flex-1 justify-end gap-4", (scrolled || forceSolid) ? "text-black" : "text-white")}>
                 <button className="hover:opacity-60 transition-opacity">
                     <SearchIcon className="h-5 w-5" strokeWidth={1.5} />
                 </button>

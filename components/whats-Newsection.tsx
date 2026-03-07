@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export function EssentialsSection() {
     return (
@@ -11,18 +12,19 @@ export function EssentialsSection() {
                     {/* Left Column Group */}
                     <div className="flex flex-col">
                         {/* Left Image Column */}
-                        <div className="relative aspect-[3/4] md:aspect-[4/5] w-full overflow-hidden bg-black/5">
-                            <img
+                        <div className="relative aspect-[3/4] md:aspect-[4/5] w-full overflow-hidden bg-black/5 text-black">
+                            <Image
                                 src="/images/essentials_left.png"
-                                alt="Male model in brown oversized zip-up jacket over grey hoodie with suede duffel bag"
-                                className="absolute inset-0 h-full w-full object-cover object-center mix-blend-multiply"
+                                alt="Male model optimization"
+                                fill
+                                className="object-cover object-center mix-blend-multiply"
                             />
                         </div>
                         {/* Left CTA */}
                         <div className="mt-6 flex justify-center">
                             <Link
                                 href="/shop"
-                                className="w-full max-w-[280px] border border-black px-6 py-4 text-center text-xs font-mono tracking-[0.2em] uppercase transition-colors hover:bg-black hover:text-white"
+                                className="w-full max-w-[280px] border border-black px-6 py-4 text-center text-[11px] font-bold tracking-[0.2em] uppercase transition-colors hover:bg-black hover:text-white"
                             >
                                 SHOP MENS
                             </Link>
@@ -31,18 +33,19 @@ export function EssentialsSection() {
                     {/* Right Column Group */}
                     <div className="flex flex-col">
                         {/* Right Image Column */}
-                        <div className="relative aspect-[3/4] md:aspect-[4/5] w-full overflow-hidden bg-black/5">
-                            <img
+                        <div className="relative aspect-[3/4] md:aspect-[4/5] w-full overflow-hidden bg-black/5 text-black">
+                            <Image
                                 src="/images/essentials_right.png"
-                                alt="Female model in matching oversized brown track jacket and wide-leg sweatpants holding black leather clutch"
-                                className="absolute inset-0 h-full w-full object-cover object-center mix-blend-multiply"
+                                alt="Female model optimization"
+                                fill
+                                className="object-cover object-center mix-blend-multiply"
                             />
                         </div>
                         {/* Right CTA */}
                         <div className="mt-6 flex justify-center">
                             <Link
                                 href="/shop"
-                                className="w-full max-w-[280px] border border-black px-6 py-4 text-center text-xs font-mono tracking-[0.2em] uppercase transition-colors hover:bg-black hover:text-white"
+                                className="w-full max-w-[280px] border border-black px-6 py-4 text-center text-[11px] font-bold tracking-[0.2em] uppercase transition-colors hover:bg-black hover:text-white"
                             >
                                 SHOP WOMENS
                             </Link>

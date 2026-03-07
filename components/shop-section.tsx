@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, ShoppingBag } from "lucide-react";
 import { useCart } from "@/components/cart-provider";
 
@@ -80,10 +81,12 @@ export function ShopSection() {
                     {/* Image Carousel */}
                     <div className="relative w-full max-w-2xl mb-8 group">
                         <div className="relative aspect-square rounded-2xl overflow-hidden bg-white">
-                            <img
+                            <Image
                                 src={selectedProduct.images?.[currentImageIndex] || selectedProduct.image}
                                 alt={selectedProduct.name}
-                                className="w-full h-full object-contain"
+                                fill
+                                priority
+                                className="object-contain"
                             />
                         </div>
 
@@ -223,7 +226,7 @@ export function ShopSection() {
                     )}
                 >
                     <AnimatePresence mode="popLayout">
-                        {products.map((product) => (
+                        {products.map((product, index) => (
                             <motion.button
                                 layout
                                 initial={{ opacity: 0 }}
@@ -238,11 +241,13 @@ export function ShopSection() {
                                     layout
                                     className="relative aspect-square w-full bg-white flex items-center justify-center p-2"
                                 >
-                                    <motion.img
-                                        layout
+                                    <Image
                                         src={product.image}
                                         alt={product.name}
-                                        className="h-full w-auto object-contain transition-transform duration-700 ease-out grayscale-[10%]"
+                                        fill
+                                        priority={index < 6}
+                                        sizes="(max-width: 768px) 33vw, (max-width: 1200px) 16vw, 12vw"
+                                        className="object-contain transition-transform duration-700 ease-out grayscale-[10%]"
                                     />
                                 </motion.div>
 

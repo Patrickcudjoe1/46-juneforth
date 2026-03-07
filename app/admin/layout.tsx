@@ -18,6 +18,12 @@ export default function AdminLayout({
         { name: "Settings", href: "/admin/settings", icon: Settings },
     ];
 
+    const isLoginPage = pathname === "/admin/login";
+
+    if (isLoginPage) {
+        return <div className="dark bg-black min-h-screen">{children}</div>;
+    }
+
     return (
         <div
             className="flex min-h-screen w-full bg-background text-foreground font-sans dark"

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface JuneforthHeroProps {
@@ -28,10 +29,12 @@ export const JuneforthHero = ({
                 transition={{ duration: 1.5, ease: "easeOut" }}
                 className="absolute inset-0 z-0 h-full w-full"
             >
-                <img
+                <Image
                     src={imageSrc}
                     alt={imageAlt}
-                    className="h-full w-full object-cover grayscale-[20%] brightness-[0.85]"
+                    fill
+                    priority
+                    className="object-cover grayscale-[20%] brightness-[0.85]"
                 />
             </motion.div>
 
