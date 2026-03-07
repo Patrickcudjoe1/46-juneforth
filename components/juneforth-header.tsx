@@ -90,7 +90,7 @@ export const JuneforthHeader = ({ className }: JuneforthHeaderProps) => {
                 </nav>
 
                 {/* Mobile: Left Menu Icon */}
-                <div className="flex lg:hidden flex-1 justify-start">
+                <div className="flex lg:hidden w-16 justify-start">
                     <button
                         onClick={() => setIsMenuOpen(true)}
                         className={cn("hover:opacity-60 transition-opacity", forceBlack ? "text-white" : (scrolled || forceSolid) ? "text-black" : "text-white")}
@@ -100,13 +100,13 @@ export const JuneforthHeader = ({ className }: JuneforthHeaderProps) => {
                 </div>
 
                 {/* Logo (Centered) */}
-                <div className="flex flex-1 justify-center">
+                <div className="flex flex-1 justify-center min-w-0">
                     <Link href="/" className="group" onClick={() => setIsMenuOpen(false)}>
                         <img
                             src="/images/JUNE       FORTH_logo.png"
                             alt="JUNEFORTH"
                             className={cn(
-                                "h-4 lg:h-6 w-auto transition-all duration-300",
+                                "h-4 lg:h-6 w-auto object-contain max-w-full transition-all duration-300",
                                 forceBlack ? "brightness-0 invert" : (scrolled || forceSolid || isMenuOpen) ? "brightness-0" : "brightness-0 invert"
                             )}
                         />
@@ -126,7 +126,7 @@ export const JuneforthHeader = ({ className }: JuneforthHeaderProps) => {
                 </nav>
 
                 {/* Mobile: Right Icons (Search & Bag) */}
-                <div className={cn("flex lg:hidden flex-1 justify-end gap-4", forceBlack ? "text-white" : (scrolled || forceSolid || isMenuOpen) ? "text-black" : "text-white")}>
+                <div className={cn("flex lg:hidden w-16 justify-end gap-4", forceBlack ? "text-white" : (scrolled || forceSolid || isMenuOpen) ? "text-black" : "text-white")}>
                     <button className="hover:opacity-60 transition-opacity">
                         <SearchIcon className="h-5 w-5" strokeWidth={1.5} />
                     </button>
